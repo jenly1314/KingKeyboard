@@ -12,7 +12,7 @@
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](https://jenly1314.github.io/)
 [![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
-KingKeyboard for Android 是一个自定义键盘。内置了满足各种场景的键盘需求：包括但不限于混合、字母、数字、电话、身份证、车牌号等可输入场景。还能支持自定义。集成简单，键盘可定制化。
+KingKeyboard for Android 是一个自定义键盘。内置了满足各种场景的键盘需求：包括但不限于混合、字母、数字、电话、身份证、车牌号等可输入场景。还支持自定义。集成简单，键盘可定制化。
 
 
 ## Gif 展示
@@ -206,7 +206,7 @@ allprojects {
 
 ### 相关说明
 
-> * **KingKeyboard**采用Kotlin编写实现，如果您的项目使用的是Java编写，集成时语法上可能稍微有点不同，除了结尾没有分号以外，对应类伴生对象中的常量，需要通过通过点半身对象才能获取。
+> * **KingKeyboard**主要采用Kotlin编写实现，如果您的项目使用的是Java编写，集成时语法上可能稍微有点不同，除了结尾没有分号以外，对应类伴生对象中的常量，需要通过通过点半身对象才能获取。
 
 ```Kotlin
   //Kotlin 写法
