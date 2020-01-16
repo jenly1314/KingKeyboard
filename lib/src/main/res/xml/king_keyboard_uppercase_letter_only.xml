@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:horizontalGap="1%p"
+    android:keyWidth="13%p"
+    android:keyHeight="@dimen/king_keyboard_key_height"
+    android:verticalGap="@dimen/king_keyboard_vertical_gap">
+    <Row>
+        <Key
+            android:codes="65"
+            android:keyLabel="A"
+            android:keyWidth="13.5%p"
+            android:keyEdgeFlags="left" />
+        <Key
+            android:codes="66"
+            android:keyLabel="B" />
+        <Key
+            android:codes="67"
+            android:keyLabel="C" />
+        <Key
+            android:codes="68"
+            android:keyLabel="D" />
+        <Key
+            android:codes="69"
+            android:keyLabel="E" />
+        <Key
+            android:codes="70"
+            android:keyLabel="F" />
+        <Key
+            android:codes="71"
+            android:keyLabel="G"
+            android:keyWidth="13.5%p"
+            android:keyEdgeFlags="right"/>
+
+    </Row>
+    <Row>
+        <Key
+            android:codes="72"
+            android:keyLabel="H"
+            android:keyWidth="13.5%p"
+            android:keyEdgeFlags="left"/>
+        <Key
+            android:codes="73"
+            android:keyLabel="I" />
+        <Key
+            android:codes="74"
+            android:keyLabel="J" />
+        <Key
+            android:codes="75"
+            android:keyLabel="K" />
+        <Key
+            android:codes="76"
+            android:keyLabel="L" />
+        <Key
+            android:codes="77"
+            android:keyLabel="M" />
+        <Key
+            android:codes="78"
+            android:keyLabel="N"
+            android:keyWidth="13.5%p"
+            android:keyEdgeFlags="right"/>
+
+    </Row>
+    <Row>
+        <Key
+            android:codes="79"
+            android:keyLabel="O"
+            android:keyWidth="13.5%p"/>
+        <Key
+            android:codes="80"
+            android:keyLabel="P" />
+        <Key
+            android:codes="81"
+            android:keyLabel="Q" />
+        <Key
+            android:codes="82"
+            android:keyLabel="R" />
+        <Key
+            android:codes="83"
+            android:keyLabel="S" />
+        <Key
+            android:codes="84"
+            android:keyLabel="T" />
+
+        <Key
+            android:codes="-5"
+            android:keyWidth="13.5%p"
+            android:isRepeatable="true" />
+    </Row>
+
+    <Row android:rowEdgeFlags="bottom">
+        <Key
+            android:codes="85"
+            android:keyLabel="U"
+            android:keyWidth="13.5%p"
+            android:keyEdgeFlags="left"/>
+
+        <Key
+            android:codes="86"
+            android:keyLabel="V" />
+        <Key
+            android:codes="87"
+            android:keyLabel="W" />
+        <Key
+            android:codes="88"
+            android:keyLabel="X" />
+        <Key
+            android:codes="89"
+            android:keyLabel="Y" />
+        <Key
+            android:codes="90"
+            android:keyLabel="Z" />
+        <Key
+            android:codes="-3"
+            android:keyWidth="13.5%p"
+            android:keyEdgeFlags="right" />
+    </Row>
+
+</Keyboard>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="king_keyboard_key_done_text">Done</string>
+    <string name="king_keyboard_key_more_text">More</string>
+    <string name="king_keyboard_key_back_text">Back</string>
+</resources>

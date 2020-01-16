@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:horizontalGap="1%p"
+    android:keyWidth="8.9%p"
+    android:keyHeight="@dimen/king_keyboard_key_height"
+    android:verticalGap="@dimen/king_keyboard_vertical_gap">
+    <Row>
+        <Key
+            android:codes="0x5185"
+            android:keyLabel="内"
+            android:keyEdgeFlags="left" />
+        <Key
+            android:codes="0x7f6e"
+            android:keyLabel="置" />
+        <Key
+            android:codes="0x5e38"
+            android:keyLabel="常" />
+        <Key
+            android:codes="0x89c1"
+            android:keyLabel="见" />
+        <Key
+            android:codes="0x573a"
+            android:keyLabel="场" />
+        <Key
+            android:codes="0x666f"
+            android:keyLabel="景" />
+        <Key
+            android:codes="0x952e"
+            android:keyLabel="键" />
+        <Key
+            android:codes="0x76d8"
+            android:keyLabel="盘" />
+        <Key
+            android:codes="0x7c7b"
+            android:keyLabel="类" />
+        <Key
+            android:codes="0x578b"
+            android:keyLabel="型"
+            android:keyEdgeFlags="right" />
+    </Row>
+    <Row>
+        <Key
+            android:codes="0x4e5f"
+            android:keyLabel="也"
+            android:keyEdgeFlags="left" />
+        <Key
+            android:codes="0x652f"
+            android:keyLabel="支" />
+        <Key
+            android:codes="0x6301"
+            android:keyLabel="持" />
+        <Key
+            android:codes="0x81ea"
+            android:keyLabel="自" />
+        <Key
+            android:codes="0x5b9a"
+            android:keyLabel="定" />
+        <Key
+            android:codes="0x4e49"
+            android:keyLabel="义" />
+        <Key
+            android:codes="0x952e"
+            android:keyLabel="键" />
+        <Key
+            android:codes="0x76d8"
+            android:keyLabel="盘" />
+        <Key
+            android:codes="0x7c7b"
+            android:keyLabel="类" />
+        <Key
+            android:codes="0x578b"
+            android:keyLabel="型"
+            android:keyEdgeFlags="right" />
+    </Row>
+
+    <Row>
+        <Key
+            android:codes="0x96c6"
+            android:keyLabel="集"
+            android:keyWidth="9%p"
+            android:keyEdgeFlags="left" />
+        <Key
+            android:codes="0x6210"
+            android:keyLabel="成"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x6b65"
+            android:keyLabel="步"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x9aa4"
+            android:keyLabel="骤"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x975e"
+            android:keyLabel="非"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x5e38"
+            android:keyLabel="常"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x7b80"
+            android:keyLabel="简"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x5355"
+            android:keyLabel="单"
+            android:keyWidth="9%p"/>
+
+        <Key
+            android:codes="-5"
+            android:keyWidth="18%p"
+            android:isRepeatable="true"
+            android:keyEdgeFlags="right"/>
+    </Row>
+
+    <Row>
+
+        <Key
+            android:codes="0x60a8"
+            android:keyLabel="您"
+            android:keyWidth="9%p"
+            android:keyEdgeFlags="left"/>
+        <Key
+            android:codes="0x503c"
+            android:keyLabel="值"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x5f97"
+            android:keyLabel="得"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x62e5"
+            android:keyLabel="拥"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x6709"
+            android:keyLabel="有"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x7684"
+            android:keyLabel="的"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x952e"
+            android:keyLabel="键"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="0x76d8"
+            android:keyLabel="盘"
+            android:keyWidth="9%p"/>
+        <Key
+            android:codes="-3"
+            android:keyWidth="18%p"
+            android:keyEdgeFlags="right" />
+    </Row>
+
+</Keyboard>

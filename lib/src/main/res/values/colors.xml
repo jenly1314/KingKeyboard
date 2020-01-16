@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="king_keyboard_key_text_color">#ff333333</color>
+
+    <color name="king_keyboard_key_special_text_color">#ff333333</color>
+
+    <color name="king_keyboard_key_done_text_color">#ffeeeeee</color>
+
+    <color name="king_keyboard_key_none_text_color">#7f999999</color>
+
+    <color name="king_keyboard_key_icon_color">#ff333333</color>
+
+    <color name="king_keyboard_key_bg_normal">#ffffffff</color>
+    <color name="king_keyboard_key_bg_pressed">#ffbbbbbb</color>
+
+    <color name="king_keyboard_special_key_bg_normal">#ffa8afbf</color>
+    <color name="king_keyboard_special_key_bg_pressed">#ff989faf</color>
+
+    <color name="king_keyboard_done_key_bg_normal">#ff0477ff</color>
+    <color name="king_keyboard_done_key_bg_pressed">#ff0467ef</color>
+
+    <color name="king_keyboard_none_key_bg_normal">#ffefefef</color>
+    <color name="king_keyboard_none_key_bg_pressed">#ffefefef</color>
+
+</resources>

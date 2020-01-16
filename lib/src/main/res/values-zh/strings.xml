@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="king_keyboard_key_done_text">完成</string>
+    <string name="king_keyboard_key_more_text">更多</string>
+    <string name="king_keyboard_key_back_text">返回</string>
+</resources>
