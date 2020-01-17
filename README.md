@@ -53,7 +53,7 @@ allprojects {
 }
 ```
 
-## 核心按键值
+## 自定义按键值
 ```Kotlin
 
  /*
@@ -124,9 +124,9 @@ allprojects {
         //------------------------------ 下面是自定义的一些功能按键值，与共用按键功能一致,但会使用默认背景颜色
 
         /**
-         * 键盘按键 -> 返回（返回到上一步，用于切换键盘后返回使用，如：NORMAL_MODE_CHANGE或CUSTOM_MODE_CHANGE键盘）
+         * 键盘按键 -> 返回（返回，适用于切换键盘后界面使用，如：NORMAL_MODE_CHANGE或CUSTOM_MODE_CHANGE键盘）
          */
-        const val KEYCODE_KING_BACK_UP = -251
+        const val KEYCODE_KING_MODE_BACK = -251
 
         /**
          * 键盘按键 ->返回（直接返回到最初,直接返回到NORMAL或CUSTOM键盘）
@@ -206,7 +206,7 @@ allprojects {
 
 ### 相关说明
 
-> * **KingKeyboard**主要采用Kotlin编写实现，如果您的项目使用的是Java编写，集成时语法上可能稍微有点不同，除了结尾没有分号以外，对应类伴生对象中的常量，需要通过通过点半身对象才能获取。
+> * **KingKeyboard**主要采用Kotlin编写实现，如果您的项目使用的是Java编写，集成时语法上可能稍微有点不同，除了结尾没有分号以外，对应类伴生对象中的常量，需要通过点伴生对象才能获取。
 
 ```Kotlin
   //Kotlin 写法
