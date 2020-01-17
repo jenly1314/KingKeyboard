@@ -185,9 +185,9 @@ open class KingKeyboard {
         //------------------------------ 下面是自定义的一些功能按键值，与共用按键功能一致,但会使用默认背景颜色
 
         /**
-         * 键盘按键 -> 返回（返回到上一步，用于切换键盘后返回使用，如：NORMAL_MODE_CHANGE或CUSTOM_MODE_CHANGE键盘）
+         * 键盘按键 -> 返回（返回，适用于切换键盘后界面使用，如：NORMAL_MODE_CHANGE或CUSTOM_MODE_CHANGE键盘）
          */
-        const val KEYCODE_KING_BACK_UP = -251
+        const val KEYCODE_KING_MODE_BACK = -251
 
         /**
          * 键盘按键 ->返回（直接返回到最初,直接返回到NORMAL或CUSTOM键盘）
@@ -310,7 +310,7 @@ open class KingKeyboard {
                         KEYCODE_KING_DONE -> keyDone(primaryCode)
                         KEYCODE_KING_DELETE -> keyDelete()
                         KEYCODE_KING_ALT -> keyAlt()
-                        KEYCODE_KING_BACK_UP -> keyBack(false)
+                        KEYCODE_KING_MODE_BACK -> keyBack(false)
                         KEYCODE_KING_BACK -> keyBack(true)
                         KEYCODE_KING_MORE -> keyMore()
                         //预留的自定义可扩展按键
