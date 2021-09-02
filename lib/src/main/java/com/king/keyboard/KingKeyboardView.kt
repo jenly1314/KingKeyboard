@@ -137,6 +137,9 @@ open class KingKeyboardView : KeyboardView {
      * 绘制Done键，常见于右下角蓝色的“确定”按键
      */
     private fun drawDoneKey(canvas: Canvas, key: Keyboard.Key) {
+        config.keyDoneText?.let {
+            key.label = it
+        }
         drawKey(canvas, key, config.doneKeyBackground, config.keyDoneTextColor, null, true)
     }
 
@@ -191,13 +194,6 @@ open class KingKeyboardView : KeyboardView {
             draw(canvas)
         }
 
-        if (isDone) {
-            config.keyDoneText?.let {
-                key.label = it
-            }
-
-        }
-
         //绘制键盘图标
         iconDrawable?.run {
 
@@ -234,7 +230,7 @@ open class KingKeyboardView : KeyboardView {
             val bottom = top.plus(iconHeight).toInt()
             key.icon.setBounds(left, top, right, bottom)
             key.icon.draw(canvas)
-            this
+
         } ?: key.label?.let {
             //绘制键盘文字
             if (isDone) {

@@ -24,6 +24,7 @@ open class KingKeyboard {
 
     private lateinit var context: Context
 
+
     private var isCap = false
 
     private var isAllCaps = false
@@ -53,7 +54,7 @@ open class KingKeyboard {
     private val keyboardLicensePlate by lazy { Keyboard(context, R.xml.king_keyboard_license_plate) }
 
     /**
-     * LICENSE_PLATE_MODE_CHANGE与LICENSE_PLATE_MODE_NUMBER
+     * LICENSE_PLATE_MODE_CHANGE与 LICENSE_PLATE_MODE_NUMBER
      */
     private val keyboardLicensePlateNumber by lazy { Keyboard(context, R.xml.king_keyboard_license_plate_number) }
 
@@ -106,6 +107,7 @@ open class KingKeyboard {
     private var vibrator: Vibrator? = null
 
     private var audioManager: AudioManager? = null
+
     /**
      * 是否震动
      */
@@ -511,7 +513,7 @@ open class KingKeyboard {
     fun register(editText: EditText,keyboardType: Int) {
         editTextArray[editText.id] = editText
         keyboardTypeArray[editText.id] = keyboardType
-        editText.setOnTouchListener(onTouchListener)
+//        editText.setOnTouchListener(onTouchListener)
     }
 
     fun onResume(){
@@ -891,10 +893,15 @@ open class KingKeyboard {
     private fun playSoundEffect(effectType: Int = AudioManager.FX_KEYPRESS_STANDARD){
         if(isPlaySoundEffect){
             if(audioManager == null){
-                audioManager = (context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager)
-                audioManager?.ringerMode = AudioManager.RINGER_MODE_NORMAL
+                try{
+                    audioManager = (context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager)
+                }catch (e: Exception){
+                    Log.w(TAG,e)
+                }
+
             }
-            audioManager?.playSoundEffect(effectType)
+            audioManager?.playSoundEffect(effectType,.5f)
+
         }
     }
 
