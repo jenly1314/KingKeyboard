@@ -7,6 +7,7 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.provider.Settings
 import android.text.InputType
 import android.util.Log
 import android.util.SparseArray
@@ -23,7 +24,6 @@ import androidx.annotation.IdRes
 open class KingKeyboard {
 
     private lateinit var context: Context
-
 
     private var isCap = false
 
@@ -54,7 +54,7 @@ open class KingKeyboard {
     private val keyboardLicensePlate by lazy { Keyboard(context, R.xml.king_keyboard_license_plate) }
 
     /**
-     * LICENSE_PLATE_MODE_CHANGE与 LICENSE_PLATE_MODE_NUMBER
+     * LICENSE_PLATE_MODE_CHANGE 与 LICENSE_PLATE_MODE_NUMBER
      */
     private val keyboardLicensePlateNumber by lazy { Keyboard(context, R.xml.king_keyboard_license_plate_number) }
 
@@ -75,10 +75,10 @@ open class KingKeyboard {
     private var currentEditText: EditText? = null
 
     /**
-     * SparseArray存储EditText,SparseArray的key为EditText的ID，value为EditText
+     * SparseArray存储 EditText,SparseArray 的key为 EditText的 ID，value为 EditText
      */
     private val editTextArray by lazy {
-        SparseArray<EditText?>()
+        SparseArray<EditText>()
     }
 
     /**
@@ -292,8 +292,10 @@ open class KingKeyboard {
                 }
 
                 override fun onKey(primaryCode: Int, keyCodes: IntArray?) {
-                    playSoundEffect()
-                    sendVibrationEffect()
+                    if(primaryCode != 0){
+                        playSoundEffect()
+                        sendVibrationEffect()
+                    }
                     //根据不同的按键值去处理
                     when(primaryCode){
                         KEYCODE_SHIFT -> keyShift()
@@ -385,7 +387,6 @@ open class KingKeyboard {
         keyboardParentView.addView(keyboardViewGroup)
 
         rootView.viewTreeObserver.addOnGlobalFocusChangeListener(globalFocusChangeListener)
-
     }
 
     /**
@@ -513,7 +514,7 @@ open class KingKeyboard {
     fun register(editText: EditText,keyboardType: Int) {
         editTextArray[editText.id] = editText
         keyboardTypeArray[editText.id] = keyboardType
-//        editText.setOnTouchListener(onTouchListener)
+        editText.setOnTouchListener(onTouchListener)
     }
 
     fun onResume(){
@@ -522,6 +523,7 @@ open class KingKeyboard {
                 it.postDelayed({ it.hideSystemInputMethod() },100)
             }
         }
+        isPlaySoundEffect = querySoundEffectsEnabled()
     }
 
     fun onDestroy(){
@@ -605,17 +607,18 @@ open class KingKeyboard {
     //----------------------------------
 
     /**
-     * 是否开启音效 -> 暂不对外提供
+     * 是否开启音效 -> 由系统设置决定，暂不对外提供
      */
     private fun isSoundEffectsEnabled(): Boolean{
         return isPlaySoundEffect
     }
 
     /**
-     * 设置是否开启音效 -> 暂不对外提供
+     * 设置是否开启音效 -> 由系统设置决定，暂不对外提供
      */
     private fun setSoundEffectEnabled(soundEffectEnabled: Boolean){
         this.isPlaySoundEffect = soundEffectEnabled
+        setSoundEffectsEnabled(isPlaySoundEffect)
     }
 
     /**
@@ -887,21 +890,29 @@ open class KingKeyboard {
         }
     }
 
+    private fun querySoundEffectsEnabled(): Boolean {
+        return Settings.System.getInt(context.contentResolver,
+            Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0
+    }
+
+    private fun setSoundEffectsEnabled(enabled: Boolean){
+        Settings.System.putInt(context.contentResolver,
+            Settings.System.SOUND_EFFECTS_ENABLED, if(enabled) 1 else 0)
+    }
+
     /**
      * 播放音效
      */
     private fun playSoundEffect(effectType: Int = AudioManager.FX_KEYPRESS_STANDARD){
         if(isPlaySoundEffect){
-            if(audioManager == null){
-                try{
+            try{
+                if(audioManager == null){
                     audioManager = (context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager)
-                }catch (e: Exception){
-                    Log.w(TAG,e)
                 }
-
+                audioManager?.playSoundEffect(effectType)
+            }catch (e: Exception){
+                Log.w(TAG,e)
             }
-            audioManager?.playSoundEffect(effectType,.5f)
-
         }
     }
 
@@ -910,11 +921,10 @@ open class KingKeyboard {
      */
     private fun sendVibrationEffect(){
         if(isVibrationEffect){
-            if(vibrator == null){
-                vibrator = (context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator)
-            }
-
             try {
+                if(vibrator == null){
+                    vibrator = (context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator)
+                }
                 //震动
                 vibrator?.let {
                     if (Build.VERSION.SDK_INT >= 26) {
@@ -924,7 +934,7 @@ open class KingKeyboard {
                     }
                 }
             }catch (e: Exception){
-                e.printStackTrace()
+                Log.w(TAG,e)
             }
         }
     }
