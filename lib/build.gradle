@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply from: 'bintray.gradle'
+//apply from: 'bintray.gradle'
+apply plugin: "com.vanniktech.maven.publish"
 
 android {
     compileSdkVersion build_versions.compileSdk
@@ -33,7 +33,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     compileOnly "androidx.appcompat:appcompat:$versions.appcompat"
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "androidx.test:runner:$versions.runner"

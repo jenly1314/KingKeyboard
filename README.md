@@ -4,6 +4,7 @@
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/KingKeyboard/master/app/release/app-release.apk)
 [![JCenter](https://img.shields.io/badge/JCenter-1.0.0-46C018.svg)](https://bintray.com/beta/#/jenly/maven/kingkeyboard)
+[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/kingkeyboard)](https://repo1.maven.org/maven2/com/github/jenly1314/kingkeyboard)
 [![JitPack](https://jitpack.io/v/jenly1314/KingKeyboard.svg)](https://jitpack.io/#jenly1314/KingKeyboard)
 [![CI](https://travis-ci.org/jenly1314/KingKeyboard.svg?branch=master)](https://travis-ci.org/jenly1314/KingKeyboard)
 [![CircleCI](https://circleci.com/gh/jenly1314/KingKeyboard.svg?style=svg)](https://circleci.com/gh/jenly1314/KingKeyboard)
@@ -21,37 +22,32 @@ KingKeyboard for Android 是一个自定义键盘。内置了满足各种场景�
 
 ## 引入
 
-### Maven：
-```maven
-<dependency>
-  <groupId>com.king.keyboard</groupId>
-  <artifactId>kingkeyboard</artifactId>
-  <version>1.0.0</version>
-  <type>pom</type>
-</dependency>
-```
 ### Gradle:
+
+1. 在Project的 **build.gradle** 里面添加远程仓库  
+          
+```gradle
+allprojects {
+    repositories {
+        //...
+        mavenCentral()
+    }
+}
+```
+
+2. 在Module的 **build.gradle** 里面添加引入依赖项
+```gradle
+implementation 'com.github.jenly1314:kingkeyboard:1.0.1'
+
+```
+
+以前发布至JCenter的版本
+
 ```gradle
 //AndroidX
 implementation 'com.king.keyboard:kingkeyboard:1.0.0'
 ```
 
-### Lvy:
-```lvy
-<dependency org='com.king.keyboard' name='kingkeyboard' rev='1.0.0'>
-  <artifact name='$AID' ext='pom'></artifact>
-</dependency>
-```
-
-###### 如果Gradle出现compile失败的情况，可以在Project的build.gradle里面添加如下：（也可以使用上面的GitPack来complie）
-```gradle
-allprojects {
-    repositories {
-        //...
-        maven { url 'https://dl.bintray.com/jenly/maven' }
-    }
-}
-```
 
 ## 自定义按键值
 ```Kotlin
@@ -206,7 +202,7 @@ allprojects {
 
 ### 相关说明
 
-> * **KingKeyboard**主要采用Kotlin编写实现，如果您的项目使用的是Java编写，集成时语法上可能稍微有点不同，除了结尾没有分号以外，对应类伴生对象中的常量，需要通过点伴生对象才能获取。
+> * **KingKeyboard** 主要采用Kotlin编写实现，如果您的项目使用的是Java编写，集成时语法上可能稍微有点不同，除了结尾没有分号以外，对应类伴生对象中的常量，需要通过点伴生对象才能获取。
 
 ```Kotlin
   //Kotlin 写法
@@ -221,7 +217,14 @@ allprojects {
 
 更多使用详情，请查看[app](app)中的源码使用示例
 
+### 相关推荐
+
+#### [SplitEditText](https://github.com/jenly1314/SplitEditText) 一个灵活的分割可编辑框；常常应用于 **验证码输入** 、**密码输入** 等场景。    
+
 ## 版本记录
+
+#### v1.0.1：2021-9-3 (从v1.0.1开始发布至 MavenCentral)
+*  优化按键提示音策略（跟随系统的提示音设置）
 
 #### v1.0.0：2020-1-16
 *  KingKeyboard初始版本

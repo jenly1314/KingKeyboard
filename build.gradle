@@ -4,19 +4,23 @@ buildscript {
     apply from: 'versions.gradle'
     repositories {
         google()
+        mavenCentral()
         jcenter()
 
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        classpath "com.novoda:bintray-release:$versions.bintray_release"
+//        classpath "com.novoda:bintray-release:$versions.bintrayRelease"
+        classpath "com.vanniktech:gradle-maven-publish-plugin:$versions.mavenPublish"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokka"
     }
 }
 
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
 
     }

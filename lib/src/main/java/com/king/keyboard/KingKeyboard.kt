@@ -16,6 +16,7 @@ import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.EditText
 import androidx.annotation.IdRes
+import androidx.annotation.XmlRes
 
 
 /**
@@ -439,7 +440,7 @@ open class KingKeyboard {
      *
      * @param xmlLayoutResId 键盘布局的资源文件，其中包含键盘布局和键值码等相关信息
      */
-    fun setKeyboardCustom(xmlLayoutResId: Int){
+    fun setKeyboardCustom(@XmlRes xmlLayoutResId: Int){
         this.keyboardCustom = Keyboard(context,xmlLayoutResId)
     }
 
@@ -453,7 +454,7 @@ open class KingKeyboard {
      *
      * @param xmlLayoutResId 键盘布局的资源文件，其中包含键盘布局和键值码等相关信息
      */
-    fun setKeyboardCustomModeChange(xmlLayoutResId: Int){
+    fun setKeyboardCustomModeChange(@XmlRes xmlLayoutResId: Int){
         this.keyboardCustomModeChange = Keyboard(context,xmlLayoutResId)
     }
 
@@ -467,7 +468,7 @@ open class KingKeyboard {
      *
      * @param xmlLayoutResId 键盘布局的资源文件，其中包含键盘布局和键值码等相关信息
      */
-    fun setKeyboardCustomMore(xmlLayoutResId: Int){
+    fun setKeyboardCustomMore(@XmlRes xmlLayoutResId: Int){
         this.keyboardCustomMore = Keyboard(context,xmlLayoutResId)
     }
 
