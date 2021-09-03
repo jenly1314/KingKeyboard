@@ -181,7 +181,7 @@ implementation 'com.king.keyboard:kingkeyboard:1.0.0'
  //按键是否启用震动
  kingKeyboard.setVibrationEffectEnabled(isVibrationEffectEnabled)
 
- //... 等等，还有各种监听方法。更多详情，请直接使用。
+ //... 还有各种监听方法。更多详情，请直接使用。
 
 ```
 
