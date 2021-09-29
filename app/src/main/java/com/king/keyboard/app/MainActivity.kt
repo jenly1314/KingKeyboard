@@ -2,7 +2,8 @@ package com.king.keyboard.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.SoundEffectConstants
+import android.text.Editable
+import android.text.TextWatcher
 import com.king.keyboard.KingKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -11,6 +12,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var kingKeyboard : KingKeyboard
 
     private var isVibrationEffectEnabled = false
+
+    private var beforeCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,35 @@ class MainActivity : AppCompatActivity() {
         kingKeyboard.register(et9,KingKeyboard.KeyboardType.ID_CARD)
         kingKeyboard.register(et10,KingKeyboard.KeyboardType.LICENSE_PLATE)
         kingKeyboard.register(et11,KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE)
+
+
+        //通过监听输入框内容改变，来通过发送功能键来切换键盘（这里只是举例展示kingKeyboard.sendKey的用法，具体怎么用还需根据需求场景去决定）
+        et11.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                beforeCount = s?.length ?: 0
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                when(s?.length){
+                    0 -> {//车牌键盘：如果输入的内容长度改变为0，并且当前的键盘不是省份键盘模式时，通过发送“返回”功能按键值，让键盘自动切换到省份键盘模式
+                        if(kingKeyboard.getKeyboardType() != KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE){
+                            kingKeyboard.sendKey(KingKeyboard.KEYCODE_BACK)
+                        }
+                    }
+                    1 -> {//车牌键盘：如果输入的内容长度从0改变为1，并且当前的键盘为省份键盘模式时，通过发送“模式改变”功能按键值，让键盘自动切换到字母键盘模式
+                        if(beforeCount == 0 && kingKeyboard.getKeyboardType() == KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE){
+                            kingKeyboard.sendKey(KingKeyboard.KEYCODE_MODE_CHANGE)
+                        }
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+
 
         /*
          * 如果目前所支持的键盘满足不了您的需求，您也可以自定义键盘，KingKeyboard对外提供自定义键盘类型。

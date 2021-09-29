@@ -297,36 +297,7 @@ open class KingKeyboard {
                         playSoundEffect()
                         sendVibrationEffect()
                     }
-                    //根据不同的按键值去处理
-                    when(primaryCode){
-                        KEYCODE_SHIFT -> keyShift()
-                        KEYCODE_MODE_CHANGE -> keyModeChange()
-                        KEYCODE_CANCEL -> keyCancel(primaryCode)
-                        KEYCODE_DONE -> keyDone(primaryCode)
-                        KEYCODE_DELETE -> keyDelete()
-                        KEYCODE_ALT -> keyAlt()
-                        KEYCODE_MODE_BACK -> keyBack(false)
-                        KEYCODE_BACK -> keyBack(true)
-                        KEYCODE_MORE -> keyMore()
-                        //预留值，具有相同的作用
-                        KEYCODE_KING_SHIFT -> keyShift()
-                        KEYCODE_KING_MODE_CHANGE -> keyModeChange()
-                        KEYCODE_KING_CANCEL -> keyCancel(primaryCode)
-                        KEYCODE_KING_DONE -> keyDone(primaryCode)
-                        KEYCODE_KING_DELETE -> keyDelete()
-                        KEYCODE_KING_ALT -> keyAlt()
-                        KEYCODE_KING_MODE_BACK -> keyBack(false)
-                        KEYCODE_KING_BACK -> keyBack(true)
-                        KEYCODE_KING_MORE -> keyMore()
-                        //预留的自定义可扩展按键
-                        in -999..-300 -> keyExtra(primaryCode)
-                        //直接输入按键值
-                        in 32..Int.MAX_VALUE -> keyInput(primaryCode)
-                        //无效的按键值，打印相关日志
-                        else -> Log.d(TAG,"primaryCode:$primaryCode")
-                    }
-                    onKeyboardActionListener?.onKey(primaryCode,keyCodes)
-
+                    performKey(primaryCode, keyCodes)
                 }
 
                 override fun onText(text: CharSequence?) {
@@ -388,6 +359,50 @@ open class KingKeyboard {
         keyboardParentView.addView(keyboardViewGroup)
 
         rootView.viewTreeObserver.addOnGlobalFocusChangeListener(globalFocusChangeListener)
+    }
+
+    /**
+     * 根据 primaryCode 发送按键事件，可通过调用触发去执行按键值对应的功能（仅限功能键）
+     * 特别说明：之所以仅限功能键，是因为如果对外支持输入相关的按键值，会破坏输入内容的限制。
+     */
+    fun sendKey(primaryCode: Int){
+        if(primaryCode < 0){
+            performKey(primaryCode, IntArray(1) { primaryCode })
+        }
+    }
+
+    /**
+     * 根据 primaryCode去做相应的处理
+     */
+    private fun performKey(primaryCode: Int, keyCodes: IntArray?){
+        when(primaryCode){
+            KEYCODE_SHIFT -> keyShift()
+            KEYCODE_MODE_CHANGE -> keyModeChange()
+            KEYCODE_CANCEL -> keyCancel(primaryCode)
+            KEYCODE_DONE -> keyDone(primaryCode)
+            KEYCODE_DELETE -> keyDelete()
+            KEYCODE_ALT -> keyAlt()
+            KEYCODE_MODE_BACK -> keyBack(false)
+            KEYCODE_BACK -> keyBack(true)
+            KEYCODE_MORE -> keyMore()
+            //预留值，具有相同的作用
+            KEYCODE_KING_SHIFT -> keyShift()
+            KEYCODE_KING_MODE_CHANGE -> keyModeChange()
+            KEYCODE_KING_CANCEL -> keyCancel(primaryCode)
+            KEYCODE_KING_DONE -> keyDone(primaryCode)
+            KEYCODE_KING_DELETE -> keyDelete()
+            KEYCODE_KING_ALT -> keyAlt()
+            KEYCODE_KING_MODE_BACK -> keyBack(false)
+            KEYCODE_KING_BACK -> keyBack(true)
+            KEYCODE_KING_MORE -> keyMore()
+            //预留的自定义可扩展按键
+            in -999..-300 -> keyExtra(primaryCode)
+            //直接输入按键值
+            in 32..Int.MAX_VALUE -> keyInput(primaryCode)
+            //无效的按键值，打印相关日志
+            else -> Log.d(TAG,"primaryCode:$primaryCode")
+        }
+        onKeyboardActionListener?.onKey(primaryCode,keyCodes)
     }
 
     /**
@@ -928,9 +943,9 @@ open class KingKeyboard {
                 }
                 //震动
                 vibrator?.let {
-                    if (Build.VERSION.SDK_INT >= 26) {
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         it.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK))
-                    }else{
+                    } else {
                         it.vibrate(16L)
                     }
                 }
@@ -946,7 +961,9 @@ open class KingKeyboard {
      */
     private fun keyDown(keycode: Int,action: Int = KeyEvent.ACTION_DOWN){
         currentEditText?.let {
-            it.onKeyDown(keycode, KeyEvent(action,keycode))
+            if(it.text.isNotEmpty()){
+                it.onKeyDown(keycode, KeyEvent(action,keycode))
+            }
         }
     }
 

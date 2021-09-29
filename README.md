@@ -19,6 +19,8 @@ KingKeyboard for Android 是一个自定义键盘。内置了满足各种场景�
 ## Gif 展示
 ![Image](GIF.gif)
 
+> 你也可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/KingKeyboard/master/app/release/app-release.apk) 体验效果
+
 
 ## 引入
 
@@ -37,7 +39,7 @@ allprojects {
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
 ```gradle
-implementation 'com.github.jenly1314:kingkeyboard:1.0.1'
+implementation 'com.github.jenly1314:kingkeyboard:1.0.2'
 
 ```
 
@@ -200,6 +202,43 @@ implementation 'com.king.keyboard:kingkeyboard:1.0.0'
 
 ```
 
+
+
+v1.0.2 新增：KingKeyboard.sendKey(primaryCode: Int) 的用法示例：
+
+```kotlin
+        val beforeCount = 0
+
+        kingKeyboard.register(et,KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE)
+
+        //通过监听输入框内容改变，来通过发送功能键来切换键盘（这里只是举例展示kingKeyboard.sendKey的用法，具体怎么用还需根据需求场景去决定）
+        et.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                beforeCount = s?.length ?: 0
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                when(s?.length){
+                    0 -> {//车牌键盘：如果输入的内容长度改变为0，并且当前的键盘不是省份键盘模式时，通过发送“返回”功能按键值，让键盘自动切换到省份键盘模式
+                        if(kingKeyboard.getKeyboardType() != KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE){
+                            kingKeyboard.sendKey(KingKeyboard.KEYCODE_BACK)
+                        }
+                    }
+                    1 -> {//车牌键盘：如果输入的内容长度从0改变为1，并且当前的键盘为省份键盘模式时，通过发送“模式改变”功能按键值，让键盘自动切换到字母键盘模式
+                        if(beforeCount == 0 && kingKeyboard.getKeyboardType() == KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE){
+                            kingKeyboard.sendKey(KingKeyboard.KEYCODE_MODE_CHANGE)
+                        }
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+```
+
 ### 相关说明
 
 > * **KingKeyboard** 主要采用Kotlin编写实现，如果您的项目使用的是Java编写，集成时语法上可能稍微有点不同，除了结尾没有分号以外，对应类伴生对象中的常量，需要通过点伴生对象才能获取。
@@ -222,6 +261,9 @@ implementation 'com.king.keyboard:kingkeyboard:1.0.0'
 #### [SplitEditText](https://github.com/jenly1314/SplitEditText) 一个灵活的分割可编辑框；常常应用于 **验证码输入** 、**密码输入** 等场景。    
 
 ## 版本记录
+
+#### v1.0.2：2021-9-29 
+*  新增** KingKeyboard.sendKey(primaryCode: Int)** 方法；（支持通过发送按键的值来控制键盘）
 
 #### v1.0.1：2021-9-3 (从v1.0.1开始发布至 MavenCentral)
 *  优化按键提示音策略（跟随系统的提示音设置）

@@ -30,6 +30,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -1157,6 +1158,7 @@ public class KeyboardView extends View implements View.OnClickListener {
         }
         mOldPointerCount = pointerCount;
 
+
         return result;
     }
 
@@ -1177,6 +1179,7 @@ public class KeyboardView extends View implements View.OnClickListener {
         // Ignore all motion events until a DOWN.
         if (mAbortKey
                 && action != MotionEvent.ACTION_DOWN && action != MotionEvent.ACTION_CANCEL) {
+            mRepeatKeyIndex = NOT_A_KEY;
             return true;
         }
 
@@ -1190,6 +1193,7 @@ public class KeyboardView extends View implements View.OnClickListener {
         // Needs to be called after the gesture detector gets a turn, as it may have
         // displayed the mini keyboard
         if (mMiniKeyboardOnScreen && action != MotionEvent.ACTION_CANCEL) {
+            mRepeatKeyIndex = NOT_A_KEY;
             return true;
         }
 
@@ -1303,9 +1307,12 @@ public class KeyboardView extends View implements View.OnClickListener {
     }
 
     private boolean repeatKey() {
-        Key key = mKeys[mRepeatKeyIndex];
-        detectAndSendKey(mCurrentKey, key.x, key.y, mLastTapTime);
-        return true;
+        if(mRepeatKeyIndex != NOT_A_KEY){
+            Key key = mKeys[mRepeatKeyIndex];
+            detectAndSendKey(mCurrentKey, key.x, key.y, mLastTapTime);
+            return true;
+        }
+        return false;
     }
 
     protected void swipeRight() {
