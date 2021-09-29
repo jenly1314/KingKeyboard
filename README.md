@@ -204,7 +204,7 @@ implementation 'com.king.keyboard:kingkeyboard:1.0.0'
 
 
 
-v1.0.2 新增：KingKeyboard.sendKey(primaryCode: Int) 的用法示例：
+**v1.0.2** 新增：**KingKeyboard.sendKey(params)** 的用法示例：
 
 ```kotlin
         val beforeCount = 0
@@ -263,7 +263,7 @@ v1.0.2 新增：KingKeyboard.sendKey(primaryCode: Int) 的用法示例：
 ## 版本记录
 
 #### v1.0.2：2021-9-29 
-*  新增** KingKeyboard.sendKey(primaryCode: Int)** 方法；（支持通过发送按键的值来控制键盘）
+*  新增 **KingKeyboard.sendKey(primaryCode: Int)** 方法；（支持通过发送按键的值来控制键盘）
 
 #### v1.0.1：2021-9-3 (从v1.0.1开始发布至 MavenCentral)
 *  优化按键提示音策略（跟随系统的提示音设置）
