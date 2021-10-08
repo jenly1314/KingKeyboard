@@ -245,19 +245,19 @@ open class KingKeyboard {
     constructor(context: Context, rootView: ViewGroup,keyboardParentView: ViewGroup,keyboardContainer: View,@IdRes keyboardViewId: Int) {
         this.context = context
         currentKeyboard = keyboardNormal
-        intKeyboard(context)
-        intKeyboardView(rootView,keyboardParentView,keyboardContainer,keyboardViewId)
+        initKeyboardView(context)
+        initKeyboardView(rootView,keyboardParentView,keyboardContainer,keyboardViewId)
 
     }
 
-    open fun intKeyboard(context: Context){
+    open fun initKeyboardView(context: Context){
 
     }
 
     /**
      * 初始化KeyboardView
      */
-    private fun intKeyboardView(rootView: ViewGroup,keyboardParentView: ViewGroup,keyboardContainer: View,@IdRes keyboardViewId: Int){
+    private fun initKeyboardView(rootView: ViewGroup,keyboardParentView: ViewGroup,keyboardContainer: View,@IdRes keyboardViewId: Int){
         //初始化键盘相关
         keyboardViewGroup = keyboardContainer
         keyboardView = keyboardViewGroup.findViewById(keyboardViewId)
@@ -574,7 +574,7 @@ open class KingKeyboard {
     /**
      * 隐藏键盘输入法
      */
-     open fun hide(){
+    open fun hide(){
         if(keyboardViewGroup.isVisible){
             keyboardViewGroup.apply {
                 clearAnimation()
