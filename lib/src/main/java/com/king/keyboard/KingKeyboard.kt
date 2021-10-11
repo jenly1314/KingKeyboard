@@ -1,6 +1,7 @@
 package com.king.keyboard
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
@@ -15,6 +16,7 @@ import android.view.*
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.annotation.IdRes
 import androidx.annotation.XmlRes
 
@@ -118,6 +120,11 @@ open class KingKeyboard {
      */
     private var isPlaySoundEffect = false
 
+    /**
+     * 是否将键盘布局置于最顶层（通过改变 View 的 Z 轴层级 将键盘布局最后再添加）
+     */
+    private var isBringToFront = false
+
     companion object{
 
         private const val TAG = "KingKeyboard"
@@ -207,27 +214,44 @@ open class KingKeyboard {
             其中-399~-300区间为功能型按键，使用Special背景色，-999~-400自定义按键为默认背景色
         */
 
+
     }
 
     /**
      * 构造
-     * @param activity 上下文
-     * @param keyboardParentView 键盘的父布局容器 -> 一般在界面底部，用来容纳键盘布局
-     *
+     * @param dialog [Dialog]
+     * @param keyboardParentView 键盘的父布局容器：一般在界面底部，用来容纳键盘布局，如果为空则默将键盘布局添加到 rootView
      */
-    constructor(activity: Activity, keyboardParentView: ViewGroup):
-            this(activity,
-                activity.window.decorView.findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup,
+    constructor(dialog: Dialog, keyboardParentView: ViewGroup? = null):
+            this(dialog.window!!, keyboardParentView)
+
+
+    /**
+     * 构造
+     * @param activity [Activity]
+     * @param keyboardParentView 键盘的父布局容器：一般在界面底部，用来容纳键盘布局，如果为空则默将键盘布局添加到 rootView
+     */
+    constructor(activity: Activity, keyboardParentView: ViewGroup? = null):
+            this(activity.window, keyboardParentView)
+
+    /**
+     * 构造
+     * @param window [Window]
+     * @param keyboardParentView 键盘的父布局容器：一般在界面底部，用来容纳键盘布局，如果为空则默将键盘布局添加到 rootView
+     */
+    constructor(window: Window, keyboardParentView: ViewGroup? = null):
+            this(window.context,
+                window.decorView.findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup,
                 keyboardParentView
             )
 
     /**
      * 构造
-     * @param context 上下文
-     * @param rootView 界面的根布局 -> 也可以是当前界面包含所有的EditText的公共父布局
-     * @param keyboardParentView 键盘的父布局容器 -> 一般在界面底部，用来容纳键盘布局
+     * @param context [Context]
+     * @param rootView 界面的根布局：一般为当前 Window 的根布局，也可以是包含所有的EditText的公共父布局；
+     * @param keyboardParentView 键盘的父布局容器：一般在界面底部，用来容纳键盘布局，如果为空则默将键盘布局添加到 rootView
      */
-    constructor(context: Context, rootView: ViewGroup,keyboardParentView: ViewGroup):
+    constructor(context: Context, rootView: ViewGroup, keyboardParentView: ViewGroup?):
             this(context,
                 rootView,
                 keyboardParentView,
@@ -236,19 +260,21 @@ open class KingKeyboard {
             )
     /**
      * 构造
-     * @param context 上下文
+     * @param context [Context]
      * @param rootView 界面的根布局 -> 也可以是当前界面包含所有的EditText的公共父布局
-     * @param keyboardParentView 键盘的父布局容器 -> 一般在界面底部，用来容纳键盘布局
+     * @param keyboardParentView 键盘的父布局容器 -> 一般在界面底部，用来容纳键盘布局，如果为空则默将键盘布局添加到 rootView
      * @param keyboardContainer 键盘的容器
      * @param keyboardViewId KingKeyboard视图控件的ID
      */
-    constructor(context: Context, rootView: ViewGroup,keyboardParentView: ViewGroup,keyboardContainer: View,@IdRes keyboardViewId: Int) {
+    constructor(context: Context, rootView: ViewGroup, keyboardParentView: ViewGroup?, keyboardContainer: View, @IdRes keyboardViewId: Int) {
         this.context = context
         currentKeyboard = keyboardNormal
         initKeyboardView(context)
         initKeyboardView(rootView,keyboardParentView,keyboardContainer,keyboardViewId)
 
     }
+
+
 
     open fun initKeyboardView(context: Context){
 
@@ -257,7 +283,7 @@ open class KingKeyboard {
     /**
      * 初始化KeyboardView
      */
-    private fun initKeyboardView(rootView: ViewGroup,keyboardParentView: ViewGroup,keyboardContainer: View,@IdRes keyboardViewId: Int){
+    private fun initKeyboardView(rootView: ViewGroup,keyboardParentView: ViewGroup?,keyboardContainer: View,@IdRes keyboardViewId: Int){
         //初始化键盘相关
         keyboardViewGroup = keyboardContainer
         keyboardView = keyboardViewGroup.findViewById(keyboardViewId)
@@ -355,8 +381,14 @@ open class KingKeyboard {
             }
         }
 
-        //将键盘布局添加到父布局
-        keyboardParentView.addView(keyboardViewGroup)
+        if(keyboardParentView != null){
+            //将键盘布局添加到父布局
+            keyboardParentView.addView(keyboardViewGroup)
+        }else{
+            val params = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            params.gravity = Gravity.BOTTOM
+            rootView.addView(keyboardViewGroup, params)
+        }
 
         rootView.viewTreeObserver.addOnGlobalFocusChangeListener(globalFocusChangeListener)
     }
@@ -565,6 +597,9 @@ open class KingKeyboard {
         if(!keyboardViewGroup.isVisible){
             keyboardViewGroup.apply {
                 isVisible = true
+                if(isBringToFront){
+                    bringToFront()
+                }
                 clearAnimation()
                 startAnimation(showAnimation)
             }
@@ -650,6 +685,18 @@ open class KingKeyboard {
     fun setVibrationEffectEnabled(vibrationEffectEnabled: Boolean){
         this.isVibrationEffect = vibrationEffectEnabled
     }
+
+    /**
+     * 设置是否将键盘布局置于最顶层（通过改变 View 的 Z 轴层级 将键盘布局最后再添加）
+     */
+    fun setBringToFront(bringToFront: Boolean){
+        this.isBringToFront = bringToFront
+    }
+
+    /**
+     * 是否将键盘布局置于最顶层（通过改变 View 的 Z 轴层级 将键盘布局最后再添加）
+     */
+    fun isBringToFront() = isBringToFront
 
     /**
      * 对外提供监听键盘相关动作

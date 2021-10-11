@@ -1,9 +1,17 @@
 package com.king.keyboard.app
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import com.king.keyboard.KingKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -79,11 +87,58 @@ class MainActivity : AppCompatActivity() {
 
         isVibrationEffectEnabled = kingKeyboard.isVibrationEffectEnabled()
 
+
+        btnDialog.setOnClickListener {
+            showEditDialog()
+        }
+
         btn.setOnClickListener{
             btn.text = if(isVibrationEffectEnabled) "Enabled" else "Disabled"
             isVibrationEffectEnabled = !isVibrationEffectEnabled
             kingKeyboard.setVibrationEffectEnabled(isVibrationEffectEnabled)
         }
+
+    }
+
+    /**
+     * 带输入的对话框
+     */
+    private fun showEditDialog(){
+        val dialog = Dialog(this,R.style.dialogStyle)
+
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null)
+
+        val keyboardParent = view.findViewById<ViewGroup>(R.id.keyboardParent)
+        val etDialogContent = view.findViewById<EditText>(R.id.etDialogContent)
+
+        val btnDialogConfirm = view.findViewById<Button>(R.id.btnDialogConfirm)
+        val btnDialogCancel = view.findViewById<Button>(R.id.btnDialogCancel)
+        btnDialogConfirm.setOnClickListener {
+            if(!TextUtils.isEmpty(etDialogContent.text)){
+                Toast.makeText(MainActivity@this,etDialogContent.text,Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+        btnDialogCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setContentView(view)
+
+        dialog.window?.apply {
+            val lp = attributes
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT
+            lp.height = WindowManager.LayoutParams.MATCH_PARENT
+
+            attributes = lp
+        }
+
+        //初始化KingKeyboard
+        val kingKeyboard = KingKeyboard(dialog,keyboardParent)
+        kingKeyboard.register(etDialogContent,KingKeyboard.KeyboardType.NORMAL)
+
+        dialog.show()
+
 
     }
 

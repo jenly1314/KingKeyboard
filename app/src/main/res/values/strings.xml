@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KingKeyboard</string>
+
+    <string name="dialog_title">提示</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_confirm">确定</string>
+
+    <string name="dialog_ok">确定</string>
 </resources>

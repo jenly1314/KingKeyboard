@@ -103,6 +103,13 @@
                 android:layout_marginTop="10dp"
                 android:hint="System input method" />
             <Button
+                android:id="@+id/btnDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="false"
+                android:hint="Dialog" />
+            <Button
                 android:id="@+id/btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
