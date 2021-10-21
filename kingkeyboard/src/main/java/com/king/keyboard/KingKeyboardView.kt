@@ -144,7 +144,7 @@ open class KingKeyboardView : KeyboardView {
     }
 
     /**
-     * 绘制Delete键
+     * 绘制None键
      */
     private fun drawNoneKey(canvas: Canvas, key: Keyboard.Key) {
         drawKey(canvas, key, config.noneKeyBackground, config.keyNoneTextColor)

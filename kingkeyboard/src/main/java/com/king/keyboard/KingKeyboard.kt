@@ -248,7 +248,7 @@ open class KingKeyboard {
     /**
      * 构造
      * @param context [Context]
-     * @param rootView 界面的根布局：一般为当前 Window 的根布局，也可以是包含所有的EditText的公共父布局；
+     * @param rootView 界面的根布局：一般为当前 Window 的根布局，也可以是包含所有的EditText的公共父布局；需要注意的是当构造省略传rootView时，其根布局必须是 ViewGroup或其子类
      * @param keyboardParentView 键盘的父布局容器：一般在界面底部，用来容纳键盘布局，如果为空则默将键盘布局添加到 rootView
      */
     constructor(context: Context, rootView: ViewGroup, keyboardParentView: ViewGroup?):
@@ -261,7 +261,7 @@ open class KingKeyboard {
     /**
      * 构造
      * @param context [Context]
-     * @param rootView 界面的根布局 -> 也可以是当前界面包含所有的EditText的公共父布局
+     * @param rootView 界面的根布局 -> 也可以是当前界面包含所有的EditText的公共父布局；需要注意的是当构造省略传rootView时，其根布局必须是 ViewGroup或其子类
      * @param keyboardParentView 键盘的父布局容器 -> 一般在界面底部，用来容纳键盘布局，如果为空则默将键盘布局添加到 rootView
      * @param keyboardContainer 键盘的容器
      * @param keyboardViewId KingKeyboard视图控件的ID
@@ -432,7 +432,7 @@ open class KingKeyboard {
             //直接输入按键值
             in 32..Int.MAX_VALUE -> keyInput(primaryCode)
             //无效的按键值，打印相关日志
-            else -> Log.d(TAG,"primaryCode:$primaryCode")
+            else -> Log.w(TAG,"primaryCode:$primaryCode")
         }
         onKeyboardActionListener?.onKey(primaryCode,keyCodes)
     }

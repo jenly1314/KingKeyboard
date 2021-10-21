@@ -1,2 +1,2 @@
-include ':app', ':lib'
+include ':app', ':kingkeyboard'
 rootProject.name='KingKeyboard'
