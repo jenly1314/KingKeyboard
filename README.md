@@ -39,7 +39,7 @@ allprojects {
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
 ```gradle
-implementation 'com.github.jenly1314:kingkeyboard:1.0.2'
+implementation 'com.github.jenly1314:kingkeyboard:1.0.3'
 
 ```
 
@@ -254,13 +254,16 @@ implementation 'com.king.keyboard:kingkeyboard:1.0.0'
 ```
 
 
-更多使用详情，请查看[app](app)中的源码使用示例
+更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/KingKeyboard/doc/)
 
 ### 相关推荐
 
 #### [SplitEditText](https://github.com/jenly1314/SplitEditText) 一个灵活的分割可编辑框；常常应用于 **验证码输入** 、**密码输入** 等场景。    
 
 ## 版本记录
+
+#### v1.0.3：2021-10-22
+*  优化细节
 
 #### v1.0.2：2021-9-29 
 *  新增 **KingKeyboard.sendKey(primaryCode: Int)** 方法；（支持通过发送按键的值来控制键盘）

@@ -1,0 +1,2 @@
+-keep class com.king.keyboard.** { *; }
+-keep class * extends com.king.keyboard.KingKeyboard
