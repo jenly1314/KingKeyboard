@@ -630,10 +630,10 @@ public class KeyboardView extends View implements View.OnClickListener {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (mDrawPending || mBuffer == null || mKeyboardChanged) {
-            onBufferDraw();
-        }
-        canvas.drawBitmap(mBuffer, 0, 0, null);
+//        if (mDrawPending || mBuffer == null || mKeyboardChanged) {
+//            onBufferDraw();
+//        }
+//        canvas.drawBitmap(mBuffer, 0, 0, null);
     }
 
     private void onBufferDraw() {

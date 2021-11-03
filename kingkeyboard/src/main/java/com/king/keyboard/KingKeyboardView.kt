@@ -122,7 +122,7 @@ open class KingKeyboardView : KeyboardView {
             KingKeyboard.KEYCODE_BACK -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
             KingKeyboard.KEYCODE_MORE -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
             in -399..-300 -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
-//            else -> drawKey(canvas,key,keyBackground)
+            else -> drawKey(canvas, key, config.keyBackground, config.keyTextColor)
         }
     }
 
