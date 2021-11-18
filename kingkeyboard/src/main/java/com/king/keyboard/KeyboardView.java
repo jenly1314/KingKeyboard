@@ -227,7 +227,7 @@ public class KeyboardView extends View implements View.OnClickListener {
     private Drawable mKeyBackground;
 
     private static final int REPEAT_INTERVAL = 50; // ~20 keys per second
-    private static final int REPEAT_START_DELAY = 400;
+    private static final int REPEAT_START_DELAY = 300;
     private static final int LONGPRESS_TIMEOUT = ViewConfiguration.getLongPressTimeout();
 
     private static int MAX_NEARBY_KEYS = 12;
@@ -238,7 +238,7 @@ public class KeyboardView extends View implements View.OnClickListener {
     private int mTapCount;
     private long mLastTapTime;
     private boolean mInMultiTap;
-    private static final int MULTITAP_INTERVAL = 800; // milliseconds
+    private static final int MULTITAP_INTERVAL = 600; // milliseconds
     private StringBuilder mPreviewLabel = new StringBuilder(1);
 
     /** Whether the keyboard bitmap needs to be redrawn before it's blitted. **/
@@ -299,7 +299,7 @@ public class KeyboardView extends View implements View.OnClickListener {
             } else if (attr == R.styleable.King_KeyboardView_android_keyTextSize) {
                 mKeyTextSize = a.getDimensionPixelSize(attr, 18);
             } else if (attr == R.styleable.King_KeyboardView_android_keyTextColor) {
-                mKeyTextColor = a.getColor(attr, 0xFF000000);
+                mKeyTextColor = a.getColor(attr, 0xFF333333);
             } else if (attr == R.styleable.King_KeyboardView_android_labelTextSize) {
                 mLabelTextSize = a.getDimensionPixelSize(attr, 14);
             } else if (attr == R.styleable.King_KeyboardView_android_popupLayout) {
