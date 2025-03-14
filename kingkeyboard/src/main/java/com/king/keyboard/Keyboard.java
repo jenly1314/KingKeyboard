@@ -17,6 +17,7 @@ package com.king.keyboard;
  */
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
@@ -245,6 +246,10 @@ public class Keyboard {
 
         /** Icon to display instead of a label. Icon takes precedence over a label */
         public Drawable icon;
+        /** background for the key */
+        public Drawable background;
+
+        public ColorStateList textColor = null;
         /** Preview version of the icon, for the preview popup */
         public Drawable iconPreview;
         /** Width of the key, not including the gap */
@@ -385,6 +390,9 @@ public class Keyboard {
 
             icon = a.getDrawable(
                     R.styleable.King_Keyboard_Key_android_keyIcon);
+            background =a.getDrawable(
+                    R.styleable.King_Keyboard_Key_android_background);
+            textColor = a.getColorStateList(R.styleable.King_Keyboard_Key_android_textColor);
             if (icon != null) {
                 icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
             }

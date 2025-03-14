@@ -1,6 +1,7 @@
 package com.king.keyboard
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
@@ -90,7 +91,7 @@ open class KingKeyboardView : KeyboardView {
     }
 
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+//        super.onDraw(canvas)
         drawKeyboard(canvas, keyboard?.keys)
     }
 
@@ -111,18 +112,18 @@ open class KingKeyboardView : KeyboardView {
     private fun drawKey(canvas: Canvas, key: Keyboard.Key) {
         when (key.codes[0]) {
             KingKeyboard.KEYCODE_SHIFT -> drawShiftKey(canvas, key)
-            KingKeyboard.KEYCODE_MODE_CHANGE -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
+            KingKeyboard.KEYCODE_MODE_CHANGE -> drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else   ColorStateList.valueOf(config.keySpecialTextColor))
             KingKeyboard.KEYCODE_CANCEL -> drawCancelKey(canvas, key)
             KingKeyboard.KEYCODE_DONE -> drawDoneKey(canvas, key)
             KingKeyboard.KEYCODE_DELETE -> drawDeleteKey(canvas, key)
             KingKeyboard.KEYCODE_ALT -> drawAltKey(canvas, key)
-            KingKeyboard.KEYCODE_SPACE -> drawKey(canvas, key, config.keyBackground, config.keyTextColor, config.spaceDrawable)
+            KingKeyboard.KEYCODE_SPACE -> drawKey(canvas, key,  if (key.background!=null)key.background else config.keyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keyTextColor), config.spaceDrawable)
             KingKeyboard.KEYCODE_NONE -> drawNoneKey(canvas, key)
-            KingKeyboard.KEYCODE_MODE_BACK -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
-            KingKeyboard.KEYCODE_BACK -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
-            KingKeyboard.KEYCODE_MORE -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
-            in -399..-300 -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
-            else -> drawKey(canvas, key, config.keyBackground, config.keyTextColor)
+            KingKeyboard.KEYCODE_MODE_BACK -> drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor))
+            KingKeyboard.KEYCODE_BACK -> drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor))
+            KingKeyboard.KEYCODE_MORE -> drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor))
+            in -399..-300 -> drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor))
+            else -> drawKey(canvas, key, if (key.background!=null)key.background else config.keyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keyTextColor))
         }
     }
 
@@ -130,7 +131,7 @@ open class KingKeyboardView : KeyboardView {
      * 绘制Cancel键，常见于关闭键盘键
      */
     private fun drawCancelKey(canvas: Canvas, key: Keyboard.Key) {
-        drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor, config.cancelDrawable)
+        drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor), config.cancelDrawable)
     }
 
     /**
@@ -140,28 +141,28 @@ open class KingKeyboardView : KeyboardView {
         config.keyDoneText?.let {
             key.label = it
         }
-        drawKey(canvas, key, config.doneKeyBackground, config.keyDoneTextColor, null, true)
+        drawKey(canvas, key, if (key.background!=null)key.background else config.doneKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keyDoneTextColor), null, true)
     }
 
     /**
      * 绘制None键
      */
     private fun drawNoneKey(canvas: Canvas, key: Keyboard.Key) {
-        drawKey(canvas, key, config.noneKeyBackground, config.keyNoneTextColor)
+        drawKey(canvas, key, if (key.background!=null)key.background else config.noneKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keyNoneTextColor))
     }
 
     /**
      * 绘制Alt键
      */
     private fun drawAltKey(canvas: Canvas, key: Keyboard.Key) {
-        drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor)
+        drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor))
     }
 
     /**
      * 绘制Delete键
      */
     private fun drawDeleteKey(canvas: Canvas, key: Keyboard.Key) {
-        drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor, config.deleteDrawable)
+        drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor), config.deleteDrawable)
     }
 
     /**
@@ -169,16 +170,16 @@ open class KingKeyboardView : KeyboardView {
      */
     private fun drawShiftKey(canvas: Canvas, key: Keyboard.Key) {
         when {
-            isAllCaps ->  drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor, config.capitalLockDrawable)
-            isCap -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor, config.capitalDrawable)
-            else -> drawKey(canvas, key, config.specialKeyBackground, config.keySpecialTextColor, config.lowerDrawable)
+            isAllCaps ->  drawKey(canvas, key, if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else ColorStateList.valueOf(config.keySpecialTextColor), config.capitalLockDrawable)
+            isCap -> drawKey(canvas, key,  if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor), config.capitalDrawable)
+            else -> drawKey(canvas, key,  if (key.background!=null)key.background else config.specialKeyBackground, if(key.textColor!=null)key.textColor else  ColorStateList.valueOf(config.keySpecialTextColor), config.lowerDrawable)
         }
     }
 
     /**
      * 绘制键盘按键
      */
-    private fun drawKey(canvas: Canvas, key: Keyboard.Key, keyBackground: Drawable?, textColor: Int, iconDrawable: Drawable? = key.icon, isDone: Boolean = false) {
+    private fun drawKey(canvas: Canvas, key: Keyboard.Key, keyBackground: Drawable?, textColor: ColorStateList, iconDrawable: Drawable? = key.icon, isDone: Boolean = false) {
         //绘制按键背景
         keyBackground?.run {
             if (key.codes[0] != 0) {
@@ -240,7 +241,7 @@ open class KingKeyboardView : KeyboardView {
             } else {
                 paint.textSize = config.keyTextSize.toFloat()
             }
-            paint.color = textColor
+            paint.color = textColor.getColorForState(key.currentDrawableState, textColor.defaultColor)
             paint.typeface = Typeface.DEFAULT
 
             canvas.drawText(
