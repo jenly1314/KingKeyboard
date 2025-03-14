@@ -7,6 +7,7 @@
     <Row>
         <Key
             android:background="@drawable/king_keyboard_custom_key_bg"
+            android:textColor="@color/custom_key_text_color"
             android:codes="0x5185"
             android:keyEdgeFlags="left"
             android:keyLabel="内" />
