@@ -56,7 +56,7 @@ open class KingKeyboardView : KeyboardView {
                         R.styleable.KingKeyboardView_kkbCapitalDrawable -> capitalDrawable = a.getDrawable(attr)
                         R.styleable.KingKeyboardView_kkbCapitalLockDrawable -> capitalLockDrawable = a.getDrawable(attr)
                         R.styleable.KingKeyboardView_kkbCancelDrawable -> cancelDrawable = a.getDrawable(attr)
-                        R.styleable.KingKeyboardView_kkbCancelDrawable -> spaceDrawable = a.getDrawable(attr)
+                        R.styleable.KingKeyboardView_kkbSpaceDrawable -> spaceDrawable = a.getDrawable(attr)
                         R.styleable.KingKeyboardView_android_labelTextSize -> labelTextSize = a.getDimensionPixelSize(attr, labelTextSize)
                         R.styleable.KingKeyboardView_android_keyTextSize -> keyTextSize = a.getDimensionPixelSize(attr, keyTextSize)
                         R.styleable.KingKeyboardView_android_keyTextColor -> keyTextColor = a.getColor(attr, keyTextColor)

@@ -12,6 +12,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.king.keyboard.KingKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //初始化KingKeyboard
         kingKeyboard = KingKeyboard(this,keyboardParent)
+        val config = kingKeyboard.getKeyboardViewConfig()
+        config?.let {c->
+            c.spaceDrawable = ContextCompat.getDrawable(this, R.mipmap.ic_launcher)
+            kingKeyboard.setKeyboardViewConfig(c)
+        }
         //然后将EditText注册到KingKeyboard即可
         kingKeyboard.register(et1,KingKeyboard.KeyboardType.NORMAL)
         kingKeyboard.register(et2,KingKeyboard.KeyboardType.LETTER)
