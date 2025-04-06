@@ -228,11 +228,13 @@ KeyboardType.CUSTOM_MORE
 如果目前所支持的键盘满足不了你的需求，你也可以自定义键盘，`KingKeyboard`对外提供自定义键盘类型。
 自定义步骤也非常简单，只需自定义键盘的xml布局，然后将`EditText`注册到对应的自定义键盘类型即可。
 
-**`KeyboardType`中预留的自定义键盘类型说明：**
+**`KeyboardType` 中预留的自定义键盘类型**
 
-1. 自定义类型：`Custom`，对应的自定义键盘布局方法：`setKeyboardCustom`，键盘类型为：`KeyboardType.CUSTOM`
-2. 自定义模式改变类型：`CustomModeChang`e，对应的自定义键盘布局方法：`setKeyboardCustomModeChange`，键盘类型为：`KeyboardType.CUSTOM_MODE_CHANGE`
-3. 自定义更多类型：`CustomMore`，对应的自定义键盘布局方法：`setKeyboardCustomMore`，键盘类型为：`KeyboardType.CUSTOM_MORE`
+| 类型 | 布局方法 | 说明 |
+|------|------|------|
+| `CUSTOM` | `setKeyboardCustom()` | 自定义键盘布局 |
+| `CUSTOM_MODE_CHANGE` | `setKeyboardCustomModeChange()` | 自定义键盘布局 - 模式切换 |
+| `CUSTOM_MORE` | `setKeyboardCustomMore()` | 自定义键盘布局 - 更多 |
 
 #### 自定义键盘代码示例
 
@@ -341,8 +343,8 @@ KeyboardType.CUSTOM_MORE
 
 ## 相关推荐
 
-#### [SplitEditText](https://github.com/jenly1314/SplitEditText) 一个灵活的分割可编辑框；常常应用于 **验证码输入** 、**密码输入** 等场景。
-#### [CodeTextField](https://github.com/jenly1314/CodeTextField) 一个使用 Compose 实现的验证码输入框。
+* [SplitEditText](https://github.com/jenly1314/SplitEditText) 一个灵活的分割可编辑框；常常应用于 **验证码输入** 、**密码输入** 等场景。
+* [CodeTextField](https://github.com/jenly1314/CodeTextField) 一个使用 Compose 实现的验证码输入框。
 
 <!-- end -->
 

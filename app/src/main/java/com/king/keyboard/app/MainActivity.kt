@@ -86,10 +86,10 @@ class MainActivity : AppCompatActivity() {
          * 如果目前所支持的键盘满足不了您的需求，您也可以自定义键盘，KingKeyboard对外提供自定义键盘类型。
          * 自定义步骤也非常简单，只需自定义键盘的xml布局，然后将EditText注册到对应的自定义键盘类型即可
          *
-         * `KeyboardType`预留的自定义键盘类型说明：
-         * 1. 自定义类型：`Custom`，对应的自定义键盘布局方法：`setKeyboardCustom`，键盘类型为：`KeyboardType.CUSTOM`
-         * 2. 自定义模式改变类型：`CustomModeChang`e，对应的自定义键盘布局方法：`setKeyboardCustomModeChange`，键盘类型为：`KeyboardType.CUSTOM_MODE_CHANGE`
-         * 3. 自定义更多类型：`CustomMore`，对应的自定义键盘布局方法：`setKeyboardCustomMore`，键盘类型为：`KeyboardType.CUSTOM_MORE`
+         * `KeyboardType`中预留的自定义键盘类型说明：
+         * 1. `KeyboardType.CUSTOM`，对应的自定义键盘布局方法：`setKeyboardCustom`
+         * 2. `KeyboardType.CUSTOM_MODE_CHANGE`，对应的自定义键盘布局方法：`setKeyboardCustomModeChange`
+         * 3. `KeyboardType.CUSTOM_MORE`，对应的自定义键盘布局方法：`setKeyboardCustomMore`
          *
          * xmlLayoutResId 键盘布局的资源文件，其中包含键盘布局和键值码等相关信息
          */
