@@ -45,7 +45,7 @@
 
 ### 键盘类型说明
 
-`KingKeyboard.KeyboardType`中定义了一些键盘类型，以供使用
+`KingKeyboard.KeyboardType` 定义了多种键盘类型枚举，使用前请先熟悉这些类型，这是正确集成 `KingKeyboard` 的重要前提。
 
 ```Kotlin
 /**
