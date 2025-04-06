@@ -3,7 +3,7 @@
 set -ex
 
 # Generate the API docs
-./gradlew dokkaHtmlMultiModule
+./gradlew dokkaHtml
 
 mkdir -p docs/api
 mv kingkeyboard/build/dokka/html/* docs/api
