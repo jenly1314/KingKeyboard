@@ -111,8 +111,7 @@ KeyboardType.CUSTOM_MORE
 
 ### 基本使用
 
-#### 基本使用示例
-
+#### 使用示例
 ```Kotlin
     // 初始化KingKeyboard
     kingKeyboard = KingKeyboard(this, keyboardParent)
@@ -148,7 +147,7 @@ KeyboardType.CUSTOM_MORE
 
 ---
 
-#### 键盘配置
+### 键盘配置
 
 ```Kotlin
     // 获取键盘相关的配置信息
@@ -168,7 +167,7 @@ KeyboardType.CUSTOM_MORE
 ```
 > 也可通过资源覆盖的方式，统一修改键盘配置。（`KingKeyboard`中的所有资源均以`king_keyboard`开头）
 
-#### 键盘状态
+### 键盘状态
 
 通过`kingKeyboard.isShow()`可以判断键盘是否显示，通过调用`kingKeyboard.hide()` 主动隐藏键盘。
 
@@ -186,7 +185,7 @@ KeyboardType.CUSTOM_MORE
 ```
 > 不对外提供`kingKeyboard.show()`函数的原因是：`KingKeyboard`内部已经根据`EditText`的焦点状态处理了键盘的显示时机。
 
-#### 键盘控制：代码发送键值（v1.0.2新增）
+### 键盘控制：代码发送键值（v1.0.2新增）
 
 有时，我们会有动态控制键盘的需求；这时你就可以使用 `kingKeyboard.sendKey(primaryCode)` 来发送键值操控键盘了。
 
@@ -229,10 +228,11 @@ KeyboardType.CUSTOM_MORE
 如果目前所支持的键盘满足不了你的需求，你也可以自定义键盘，`KingKeyboard`对外提供自定义键盘类型。
 自定义步骤也非常简单，只需自定义键盘的xml布局，然后将`EditText`注册到对应的自定义键盘类型即可。
 
-* `KeyboardType`预留的自定义键盘类型说明：
-  1. 自定义类型：`Custom`，对应的自定义键盘布局方法：`setKeyboardCustom`，键盘类型为：`KeyboardType.CUSTOM`
-  2. 自定义模式改变类型：`CustomModeChang`e，对应的自定义键盘布局方法：`setKeyboardCustomModeChange`，键盘类型为：`KeyboardType.CUSTOM_MODE_CHANGE`
-  3. 自定义更多类型：`CustomMore`，对应的自定义键盘布局方法：`setKeyboardCustomMore`，键盘类型为：`KeyboardType.CUSTOM_MORE`
+**`KeyboardType`中预留的自定义键盘类型说明：**
+
+1. 自定义类型：`Custom`，对应的自定义键盘布局方法：`setKeyboardCustom`，键盘类型为：`KeyboardType.CUSTOM`
+2. 自定义模式改变类型：`CustomModeChang`e，对应的自定义键盘布局方法：`setKeyboardCustomModeChange`，键盘类型为：`KeyboardType.CUSTOM_MODE_CHANGE`
+3. 自定义更多类型：`CustomMore`，对应的自定义键盘布局方法：`setKeyboardCustomMore`，键盘类型为：`KeyboardType.CUSTOM_MORE`
 
 #### 自定义键盘代码示例
 
