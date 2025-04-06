@@ -5,7 +5,6 @@
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/KingKeyboard/master/app/release/app-release.apk)
 [![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/kingkeyboard)](https://repo1.maven.org/maven2/com/github/jenly1314/kingkeyboard)
 [![JitPack](https://jitpack.io/v/jenly1314/KingKeyboard.svg)](https://jitpack.io/#jenly1314/KingKeyboard)
-[![CI](https://travis-ci.org/jenly1314/KingKeyboard.svg?branch=master)](https://travis-ci.org/jenly1314/KingKeyboard)
 [![CircleCI](https://circleci.com/gh/jenly1314/KingKeyboard.svg?style=svg)](https://circleci.com/gh/jenly1314/KingKeyboard)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
@@ -36,7 +35,7 @@
     }
     ```
 
-2. 在Module的 **build.gradle** 里面添加引入依赖项
+2. 在Module的 **build.gradle** 中添加依赖项
 
     ```gradle
     implementation 'com.github.jenly1314:kingkeyboard:1.1.0'
