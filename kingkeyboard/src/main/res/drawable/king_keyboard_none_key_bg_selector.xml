@@ -3,15 +3,14 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <solid android:color="@color/king_keyboard_none_key_bg_pressed" />
-            <corners android:radius="4dp" />
+            <corners android:radius="@dimen/king_keyboard_key_radius" />
         </shape>
     </item>
 
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/king_keyboard_none_key_bg_normal" />
-            <corners android:radius="4dp" />
+            <corners android:radius="@dimen/king_keyboard_key_radius" />
         </shape>
     </item>
-
 </selector>

@@ -1,23 +1,34 @@
 package com.king.keyboard.app
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.king.keyboard.KingKeyboard
-import kotlinx.android.synthetic.main.activity_main.*
+import com.king.keyboard.KingKeyboard.KeyboardType
+import com.king.keyboard.app.databinding.ActivityMainBinding
 
+/**
+ * 示例
+ *
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ * <p>
+ * <a href="https://dgithub.xyz/jenly1314">Follow me</a>
+ */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var kingKeyboard : KingKeyboard
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    private lateinit var kingKeyboard: KingKeyboard
 
     private var isVibrationEffectEnabled = false
 
@@ -25,38 +36,39 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //初始化KingKeyboard
-        kingKeyboard = KingKeyboard(this,keyboardParent)
-        //然后将EditText注册到KingKeyboard即可
-        kingKeyboard.register(et1,KingKeyboard.KeyboardType.NORMAL)
-        kingKeyboard.register(et2,KingKeyboard.KeyboardType.LETTER)
-        kingKeyboard.register(et3,KingKeyboard.KeyboardType.LOWERCASE_LETTER_ONLY)
-        kingKeyboard.register(et4,KingKeyboard.KeyboardType.UPPERCASE_LETTER_ONLY)
-        kingKeyboard.register(et5,KingKeyboard.KeyboardType.LETTER_NUMBER)
-        kingKeyboard.register(et6,KingKeyboard.KeyboardType.NUMBER)
-        kingKeyboard.register(et7,KingKeyboard.KeyboardType.NUMBER_DECIMAL)
-        kingKeyboard.register(et8,KingKeyboard.KeyboardType.PHONE)
-        kingKeyboard.register(et9,KingKeyboard.KeyboardType.ID_CARD)
-        kingKeyboard.register(et10,KingKeyboard.KeyboardType.LICENSE_PLATE)
-        kingKeyboard.register(et11,KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE)
+        setContentView(binding.root)
+        // 初始化KingKeyboard
+        kingKeyboard = KingKeyboard(this)
+//        kingKeyboard = KingKeyboard(this, binding.keyboardParent)
+        // 然后将EditText注册到KingKeyboard即可
+        kingKeyboard.register(binding.et1, KeyboardType.NORMAL)
+        kingKeyboard.register(binding.et2, KeyboardType.LETTER)
+        kingKeyboard.register(binding.et3, KeyboardType.LOWERCASE_LETTER_ONLY)
+        kingKeyboard.register(binding.et4, KeyboardType.UPPERCASE_LETTER_ONLY)
+        kingKeyboard.register(binding.et5, KeyboardType.LETTER_NUMBER)
+        kingKeyboard.register(binding.et6, KeyboardType.NUMBER)
+        kingKeyboard.register(binding.et7, KeyboardType.NUMBER_DECIMAL)
+        kingKeyboard.register(binding.et8, KeyboardType.PHONE)
+        kingKeyboard.register(binding.et9, KeyboardType.ID_CARD)
+        kingKeyboard.register(binding.et10, KeyboardType.LICENSE_PLATE)
+        kingKeyboard.register(binding.et11, KeyboardType.LICENSE_PLATE_PROVINCE)
 
-
-        //通过监听输入框内容改变，来通过发送功能键来切换键盘（这里只是举例展示kingKeyboard.sendKey的用法，具体怎么用还需根据需求场景去决定）
-        et11.addTextChangedListener(object : TextWatcher{
+        // 通过监听输入框内容改变，来通过发送功能键来切换键盘（这里只是举例展示kingKeyboard.sendKey的用法，具体怎么用还需根据需求场景去决定）
+        binding.et11.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 beforeCount = s?.length ?: 0
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                when(s?.length){
-                    0 -> {//车牌键盘：如果输入的内容长度改变为0，并且当前的键盘不是省份键盘模式时，通过发送“返回”功能按键值，让键盘自动切换到省份键盘模式
-                        if(kingKeyboard.getKeyboardType() != KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE){
+                when (s?.length) {
+                    0 -> {// 车牌键盘：如果输入的内容长度改变为0，并且当前的键盘不是省份键盘模式时，通过发送“返回”功能按键值，让键盘自动切换到省份键盘模式
+                        if (kingKeyboard.getKeyboardType() != KeyboardType.LICENSE_PLATE_PROVINCE) {
                             kingKeyboard.sendKey(KingKeyboard.KEYCODE_BACK)
                         }
                     }
-                    1 -> {//车牌键盘：如果输入的内容长度从0改变为1，并且当前的键盘为省份键盘模式时，通过发送“模式改变”功能按键值，让键盘自动切换到字母键盘模式
-                        if(beforeCount == 0 && kingKeyboard.getKeyboardType() == KingKeyboard.KeyboardType.LICENSE_PLATE_PROVINCE){
+
+                    1 -> {// 车牌键盘：如果输入的内容长度从0改变为1，并且当前的键盘为省份键盘模式时，通过发送“模式改变”功能按键值，让键盘自动切换到字母键盘模式
+                        if (beforeCount == 0 && kingKeyboard.getKeyboardType() == KeyboardType.LICENSE_PLATE_PROVINCE) {
                             kingKeyboard.sendKey(KingKeyboard.KEYCODE_MODE_CHANGE)
                         }
                     }
@@ -74,39 +86,48 @@ class MainActivity : AppCompatActivity() {
          * 如果目前所支持的键盘满足不了您的需求，您也可以自定义键盘，KingKeyboard对外提供自定义键盘类型。
          * 自定义步骤也非常简单，只需自定义键盘的xml布局，然后将EditText注册到对应的自定义键盘类型即可
          *
-         * 1. 自定义键盘Custom，自定义方法setKeyboardCustom，键盘类型为{@link KeyboardType#CUSTOM}
-         * 2. 自定义键盘CustomModeChange，自定义方法setKeyboardCustomModeChange，键盘类型为{@link KeyboardType#CUSTOM_MODE_CHANGE}
-         * 3. 自定义键盘CustomMore，自定义方法setKeyboardCustomMore，键盘类型为{@link KeyboardType#CUSTOM_MORE}
+         * `KeyboardType`预留的自定义键盘类型说明：
+         * 1. 自定义类型：`Custom`，对应的自定义键盘布局方法：`setKeyboardCustom`，键盘类型为：`KeyboardType.CUSTOM`
+         * 2. 自定义模式改变类型：`CustomModeChang`e，对应的自定义键盘布局方法：`setKeyboardCustomModeChange`，键盘类型为：`KeyboardType.CUSTOM_MODE_CHANGE`
+         * 3. 自定义更多类型：`CustomMore`，对应的自定义键盘布局方法：`setKeyboardCustomMore`，键盘类型为：`KeyboardType.CUSTOM_MORE`
          *
          * xmlLayoutResId 键盘布局的资源文件，其中包含键盘布局和键值码等相关信息
          */
         kingKeyboard.setKeyboardCustom(R.xml.keyboard_custom)
 //        kingKeyboard.setKeyboardCustomModeChange(xmlLayoutResId)
 //        kingKeyboard.setKeyboardCustomMore(xmlLayoutResId)
-        kingKeyboard.register(et12,KingKeyboard.KeyboardType.CUSTOM)
+        kingKeyboard.register(binding.et12, KeyboardType.CUSTOM)
 
         isVibrationEffectEnabled = kingKeyboard.isVibrationEffectEnabled()
 
-
-        btnDialog.setOnClickListener {
-            showEditDialog()
+        binding.btnDialog.setOnClickListener {
+            showEditTextDialog()
         }
 
-        btn.setOnClickListener{
-            btn.text = if(isVibrationEffectEnabled) "Enabled" else "Disabled"
-            isVibrationEffectEnabled = !isVibrationEffectEnabled
+        binding.cbVibration.setOnCheckedChangeListener { _, isChecked ->
+            isVibrationEffectEnabled = isChecked
             kingKeyboard.setVibrationEffectEnabled(isVibrationEffectEnabled)
         }
 
     }
 
+    override fun onBackPressed() {
+        if (kingKeyboard.isShow()) {
+            kingKeyboard.hide()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     /**
      * 带输入的对话框
      */
-    private fun showEditDialog(){
-        val dialog = Dialog(this,R.style.dialogStyle)
+    private fun showEditTextDialog() {
+        kingKeyboard.hide()
 
-        val view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null)
+        val dialog = Dialog(this, R.style.dialogStyle)
+
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_edit, null)
 
         val keyboardParent = view.findViewById<ViewGroup>(R.id.keyboardParent)
         val etDialogContent = view.findViewById<EditText>(R.id.etDialogContent)
@@ -114,8 +135,8 @@ class MainActivity : AppCompatActivity() {
         val btnDialogConfirm = view.findViewById<Button>(R.id.btnDialogConfirm)
         val btnDialogCancel = view.findViewById<Button>(R.id.btnDialogCancel)
         btnDialogConfirm.setOnClickListener {
-            if(!TextUtils.isEmpty(etDialogContent.text)){
-                Toast.makeText(MainActivity@this,etDialogContent.text,Toast.LENGTH_SHORT).show()
+            if (etDialogContent.text.isNotEmpty()) {
+                Toast.makeText(this, etDialogContent.text, Toast.LENGTH_SHORT).show()
             }
             dialog.dismiss()
         }
@@ -127,18 +148,28 @@ class MainActivity : AppCompatActivity() {
 
         dialog.window?.apply {
             val lp = attributes
-            lp.width = WindowManager.LayoutParams.MATCH_PARENT
-            lp.height = WindowManager.LayoutParams.MATCH_PARENT
-
+            lp.width = view.layoutParams.width
+            lp.height = view.layoutParams.height
             attributes = lp
         }
 
-        //初始化KingKeyboard
-        val kingKeyboard = KingKeyboard(dialog,keyboardParent)
-        kingKeyboard.register(etDialogContent,KingKeyboard.KeyboardType.NORMAL)
+        // 初始化KingKeyboard
+        val kingKeyboard = KingKeyboard(dialog, keyboardParent)
+        kingKeyboard.register(etDialogContent, KeyboardType.NORMAL)
+        kingKeyboard.setVibrationEffectEnabled(isVibrationEffectEnabled)
+
+        dialog.setOnKeyListener { _, keyCode, event ->
+            when {
+                keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP && kingKeyboard.isShow() -> {
+                    kingKeyboard.hide()
+                    true
+                }
+
+                else -> false
+            }
+        }
 
         dialog.show()
-
 
     }
 

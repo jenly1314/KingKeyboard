@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/king_keyboard_key_bg_shade" />
+            <corners android:radius="@dimen/king_keyboard_key_radius" />
+        </shape>
+    </item>
+
+    <item android:bottom="@dimen/king_keyboard_key_elevation">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/king_keyboard_done_key_bg_normal" />
+            <corners android:radius="@dimen/king_keyboard_key_radius" />
+        </shape>
+    </item>
+</layer-list>

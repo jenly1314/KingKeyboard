@@ -1,21 +1,20 @@
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 
 android {
-    compileSdkVersion build_versions.compileSdk
-    buildToolsVersion build_versions.buildTools
+    namespace 'com.king.keyboard.app'
+    compileSdk build_versions.compileSdk
+
     defaultConfig {
         applicationId "com.king.keyboard.app"
-        minSdkVersion build_versions.minSdk
-        targetSdkVersion build_versions.targetSdk
+        minSdk build_versions.minSdk
+        targetSdk build_versions.targetSdk
         versionCode app_version.versionCode
         versionName app_version.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -24,10 +23,21 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-        warning 'InvalidPackage'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    lint {
+        abortOnError false
+    }
+
 
 }
 
@@ -36,10 +46,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
-    implementation "androidx.core:core-ktx:$versions.core_ktx"
+    implementation "androidx.core:core-ktx:$versions.coreKtx"
+
     testImplementation "junit:junit:$versions.junit"
-    androidTestImplementation "androidx.test:runner:$versions.runner"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
 
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
     implementation project(path: ':kingkeyboard')

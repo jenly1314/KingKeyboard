@@ -9,9 +9,9 @@
     </style>
 
 
-    <style name="dialog_scale_animation" parent="android:style/Animation.Dialog">
-        <item name="android:windowEnterAnimation">@anim/dialog_scale_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_scale_out</item>
+    <style name="dialog_animation" parent="android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
 
     <!-- dialog style -->
@@ -22,7 +22,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowAnimationStyle">@style/dialog_scale_animation</item>
+        <item name="android:windowAnimationStyle">@style/dialog_animation</item>
     </style>
 
 </resources>

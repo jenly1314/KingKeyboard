@@ -102,27 +102,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="System input method" />
+            <CheckBox
+                android:id="@+id/cbVibration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="false"
+                android:checked="false"
+                android:text="Vibration" />
+
             <Button
                 android:id="@+id/btnDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textAllCaps="false"
-                android:hint="Dialog" />
-            <Button
-                android:id="@+id/btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textAllCaps="false"
-                android:hint="Enabled" />
+                android:text="Dialog" />
         </LinearLayout>
     </ScrollView>
 
-
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/keyboardParent"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"

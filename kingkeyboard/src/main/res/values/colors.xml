@@ -1,26 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utF-8"?>
 <resources>
 
-    <color name="king_keyboard_key_text_color">#ff333333</color>
+    <color name="king_keyboard_key_text_color">#FF333333</color>
 
-    <color name="king_keyboard_key_special_text_color">#ff333333</color>
+    <color name="king_keyboard_key_special_text_color">#FF333333</color>
 
-    <color name="king_keyboard_key_done_text_color">#ffeeeeee</color>
+    <color name="king_keyboard_key_done_text_color">#FFEEEEEE</color>
 
-    <color name="king_keyboard_key_none_text_color">#7f999999</color>
+    <color name="king_keyboard_key_none_text_color">#7F999999</color>
 
-    <color name="king_keyboard_key_icon_color">#ff333333</color>
+    <color name="king_keyboard_key_icon_color">#FF333333</color>
 
-    <color name="king_keyboard_key_bg_normal">#ffffffff</color>
-    <color name="king_keyboard_key_bg_pressed">#ffbbbbbb</color>
+    <color name="king_keyboard_key_bg_normal">#FFFFFFFF</color>
+    <color name="king_keyboard_key_bg_pressed">#FFC0C0C0</color>
 
-    <color name="king_keyboard_special_key_bg_normal">#ffa8afbf</color>
-    <color name="king_keyboard_special_key_bg_pressed">#ff989faf</color>
+    <color name="king_keyboard_special_key_bg_normal">#FFA8AFBF</color>
+    <color name="king_keyboard_special_key_bg_pressed">#FF7E879B</color>
 
-    <color name="king_keyboard_done_key_bg_normal">#ff0477ff</color>
-    <color name="king_keyboard_done_key_bg_pressed">#ff0467ef</color>
+    <color name="king_keyboard_done_key_bg_normal">#FF3A8CFF</color>
+    <color name="king_keyboard_done_key_bg_pressed">#FF1A6CDB</color>
 
-    <color name="king_keyboard_none_key_bg_normal">#ffefefef</color>
-    <color name="king_keyboard_none_key_bg_pressed">#ffefefef</color>
+    <color name="king_keyboard_none_key_bg_normal">#FFEFEFEF</color>
+    <color name="king_keyboard_none_key_bg_pressed">#FFD5D5D5</color>
+
+    <color name="king_keyboard_key_bg_shade">#20000000</color>
 
 </resources>

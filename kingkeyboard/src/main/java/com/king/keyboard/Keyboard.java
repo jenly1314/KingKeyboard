@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-
 /**
  * Loads an XML description of a keyboard and stores the attributes of the keys. A keyboard
  * consists of rows of keys.
@@ -212,6 +211,7 @@ public class Keyboard {
             rowEdgeFlags = a.getInt(R.styleable.King_Keyboard_Row_android_rowEdgeFlags, 0);
             mode = a.getResourceId(R.styleable.King_Keyboard_Row_android_keyboardMode,
                     0);
+            a.recycle();
         }
     }
 
@@ -465,14 +465,18 @@ public class Keyboard {
             boolean rightEdge = (edgeFlags & EDGE_RIGHT) > 0;
             boolean topEdge = (edgeFlags & EDGE_TOP) > 0;
             boolean bottomEdge = (edgeFlags & EDGE_BOTTOM) > 0;
-            if ((x >= this.x || (leftEdge && x <= this.x + this.width))
-                    && (x < this.x + this.width || (rightEdge && x >= this.x))
-                    && (y >= this.y || (topEdge && y <= this.y + this.height))
-                    && (y < this.y + this.height || (bottomEdge && y >= this.y))) {
-                return true;
-            } else {
-                return false;
-            }
+
+            // 常规情况检查
+            boolean inX = (x >= this.x) && (x < this.x + this.width);
+            boolean inY = (y >= this.y) && (y < this.y + this.height);
+
+            // 边缘情况处理
+            boolean extendedX = (leftEdge && x < this.x) ||
+                (rightEdge && x >= this.x + this.width);
+            boolean extendedY = (topEdge && y < this.y) ||
+                (bottomEdge && y >= this.y + this.height);
+
+            return (inX || extendedX) && (inY || extendedY);
         }
 
         /**
@@ -644,7 +648,7 @@ public class Keyboard {
             }
             if (totalGap + totalWidth > newWidth) {
                 int x = 0;
-                float scaleFactor = (float)(newWidth - totalGap) / totalWidth;
+                int scaleFactor = (newWidth - totalGap) / totalWidth;
                 for (int keyIndex = 0; keyIndex < numKeys; ++keyIndex) {
                     Key key = row.mKeys.get(keyIndex);
                     key.width *= scaleFactor;
@@ -861,7 +865,6 @@ public class Keyboard {
             }
         } catch (Exception e) {
             Log.e(TAG, "Parse error:" + e);
-            e.printStackTrace();
         }
         mTotalHeight = y - mDefaultVerticalGap;
     }

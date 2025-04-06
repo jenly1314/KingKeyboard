@@ -13,9 +13,8 @@
         android:animateLayoutChanges="true"
         android:paddingTop="@dimen/king_keyboard_view_padding_top"
         android:paddingBottom="@dimen/king_keyboard_view_padding_bottom"
-        android:keyBackground="@drawable/king_keyboard_key_bg"
+        android:keyBackground="@drawable/king_keyboard_key_bg_selector"
         android:keyTextColor="@color/king_keyboard_key_text_color"
         android:keyTextSize="@dimen/king_keyboard_text_size"
         android:labelTextSize="@dimen/king_keyboard_label_text_size"/>
-
 </FrameLayout>

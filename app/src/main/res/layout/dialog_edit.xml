@@ -8,12 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="bottom">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:layout_above="@+id/keyboardParent"
+            android:layout_margin="16dp"
             android:background="@drawable/dialog_bg"
             android:orientation="vertical">
             <TextView
@@ -81,12 +80,9 @@
         </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/keyboardParent"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

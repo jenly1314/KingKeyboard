@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:horizontalGap="1%p"
+    android:horizontalGap="@dimen/king_keyboard_horizontal_gap"
     android:keyWidth="13%p"
     android:keyHeight="@dimen/king_keyboard_key_height"
     android:verticalGap="@dimen/king_keyboard_vertical_gap">
     <Row>
         <Key
             android:codes="65"
-            android:keyLabel="A"
             android:keyWidth="13.5%p"
-            android:keyEdgeFlags="left" />
+            android:keyEdgeFlags="left"
+            android:keyLabel="A" />
         <Key
             android:codes="66"
             android:keyLabel="B" />
@@ -27,17 +27,17 @@
             android:keyLabel="F" />
         <Key
             android:codes="71"
-            android:keyLabel="G"
             android:keyWidth="13.5%p"
-            android:keyEdgeFlags="right"/>
+            android:keyEdgeFlags="right"
+            android:keyLabel="G" />
 
     </Row>
     <Row>
         <Key
             android:codes="72"
-            android:keyLabel="H"
             android:keyWidth="13.5%p"
-            android:keyEdgeFlags="left"/>
+            android:keyEdgeFlags="left"
+            android:keyLabel="H" />
         <Key
             android:codes="73"
             android:keyLabel="I" />
@@ -55,16 +55,16 @@
             android:keyLabel="M" />
         <Key
             android:codes="78"
-            android:keyLabel="N"
             android:keyWidth="13.5%p"
-            android:keyEdgeFlags="right"/>
+            android:keyEdgeFlags="right"
+            android:keyLabel="N" />
 
     </Row>
     <Row>
         <Key
             android:codes="79"
-            android:keyLabel="O"
-            android:keyWidth="13.5%p"/>
+            android:keyWidth="13.5%p"
+            android:keyLabel="O" />
         <Key
             android:codes="80"
             android:keyLabel="P" />
@@ -83,16 +83,16 @@
 
         <Key
             android:codes="-5"
-            android:keyWidth="13.5%p"
-            android:isRepeatable="true" />
+            android:isRepeatable="true"
+            android:keyWidth="13.5%p" />
     </Row>
 
     <Row android:rowEdgeFlags="bottom">
         <Key
             android:codes="85"
-            android:keyLabel="U"
             android:keyWidth="13.5%p"
-            android:keyEdgeFlags="left"/>
+            android:keyEdgeFlags="left"
+            android:keyLabel="U" />
 
         <Key
             android:codes="86"

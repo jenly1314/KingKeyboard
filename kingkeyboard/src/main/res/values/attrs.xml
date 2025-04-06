@@ -2,39 +2,35 @@
 <resources>
 
     <declare-styleable name="KingKeyboardView">
-
-        <attr name="android:labelTextSize"/>
-        <attr name="android:keyTextSize"/>
-        <attr name="android:keyTextColor"/>
-        <attr name="android:keyBackground"/>
-        <attr name="kkbDeleteDrawable" format="reference"/>
-        <attr name="kkbCapitalDrawable" format="reference"/>
-        <attr name="kkbCapitalLockDrawable" format="reference"/>
-        <attr name="kkbCancelDrawable" format="reference"/>
-        <attr name="kkbSpaceDrawable" format="reference"/>
-        <attr name="kkbSpecialKeyBackground" format="reference"/>
-        <attr name="kkbDoneKeyBackground" format="reference"/>
-        <attr name="kkbNoneKeyBackground" format="reference"/>
-        <attr name="kkbKeyIconColor" format="color"/>
-        <attr name="kkbKeySpecialTextColor" format="color"/>
-        <attr name="kkbKeyDoneTextColor" format="color"/>
-        <attr name="kkbKeyDoneTextSize" format="dimension"/>
-        <attr name="kkbKeyNoneTextColor" format="color"/>
-        <attr name="kkbKeyDoneText" format="string"/>
-
+        <attr name="android:labelTextSize" />
+        <attr name="android:keyTextSize" />
+        <attr name="android:keyTextColor" />
+        <attr name="android:keyBackground" />
+        <attr name="kkbDeleteDrawable" format="reference" />
+        <attr name="kkbCapitalDrawable" format="reference" />
+        <attr name="kkbCapitalLockDrawable" format="reference" />
+        <attr name="kkbCancelDrawable" format="reference" />
+        <attr name="kkbSpaceDrawable" format="reference" />
+        <attr name="kkbSpecialKeyBackground" format="reference" />
+        <attr name="kkbDoneKeyBackground" format="reference" />
+        <attr name="kkbNoneKeyBackground" format="reference" />
+        <attr name="kkbKeyIconColor" format="color" />
+        <attr name="kkbKeySpecialTextColor" format="color" />
+        <attr name="kkbKeyDoneTextColor" format="color" />
+        <attr name="kkbKeyDoneTextSize" format="dimension" />
+        <attr name="kkbKeyNoneTextColor" format="color" />
+        <attr name="kkbKeyDoneText" format="string" />
     </declare-styleable>
 
 
-
     <declare-styleable name="King_KeyboardView">
+        <attr name="android:keyBackground" />
 
-        <attr name="android:keyBackground"/>
-
-        <attr name="android:keyTextSize"/>
+        <attr name="android:keyTextSize" />
 
         <attr name="android:labelTextSize" />
 
-        <attr name="android:keyTextColor"/>
+        <attr name="android:keyTextColor" />
 
         <attr name="android:keyPreviewLayout" />
 
@@ -53,39 +49,35 @@
 
 
     <declare-styleable name="King_KeyboardViewPreviewState">
-
-        <attr name="android:state_long_pressable"/>
+        <attr name="android:state_long_pressable" />
     </declare-styleable>
 
     <declare-styleable name="King_Keyboard">
-
         <attr name="android:keyWidth" />
 
-        <attr name="android:keyHeight"  />
+        <attr name="android:keyHeight" />
 
         <attr name="android:horizontalGap" />
 
-        <attr name="android:verticalGap"/>
+        <attr name="android:verticalGap" />
     </declare-styleable>
 
 
     <declare-styleable name="King_Keyboard_Row">
+        <attr name="android:rowEdgeFlags" />
 
-        <attr name="android:rowEdgeFlags"/>
-
-        <attr name="android:keyboardMode"/>
+        <attr name="android:keyboardMode" />
     </declare-styleable>
 
 
     <declare-styleable name="King_Keyboard_Key">
+        <attr name="android:codes" />
 
-        <attr name="android:codes"/>
-
-        <attr name="android:popupKeyboard"/>
+        <attr name="android:popupKeyboard" />
 
         <attr name="android:popupCharacters" />
 
-        <attr name="android:keyEdgeFlags"/>
+        <attr name="android:keyEdgeFlags" />
 
         <attr name="android:isModifier" />
 
@@ -93,13 +85,13 @@
 
         <attr name="android:isRepeatable" />
 
-        <attr name="android:iconPreview"/>
+        <attr name="android:iconPreview" />
 
         <attr name="android:keyOutputText" />
 
         <attr name="android:keyLabel" />
 
-        <attr name="android:keyIcon"/>
+        <attr name="android:keyIcon" />
 
         <attr name="android:keyboardMode" />
     </declare-styleable>
