@@ -357,7 +357,7 @@ KeyboardType.CUSTOM_MORE
 * `KingKeyboard`实现`LifecycleObserver`（构造中的`Activity`改为`ComponentActivity`）
 * 优化Java调用Kotlin默认参数函数时的兼容性（构造添加注解：`@JvmOverloads`）
 * 调整车牌键盘按键的排列顺序
-* 优化点击音效和振动触感反馈实现方式（移除振动权限）
+* 优化点击音效和振动触感反馈实现方式
 * 优化键盘按键默认配置的背景（颜色搭配微调，使整体看起来更美观）
 * 优化一些细节
 
