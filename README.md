@@ -230,11 +230,11 @@ KeyboardType.CUSTOM_MORE
 
 **`KeyboardType` 中预留的自定义键盘类型**
 
-| 类型 | 布局方法 | 说明 |
-|------|------|------|
-| `CUSTOM` | `setKeyboardCustom()` | 自定义键盘布局 |
-| `CUSTOM_MODE_CHANGE` | `setKeyboardCustomModeChange()` | 自定义键盘布局 - 模式切换 |
-| `CUSTOM_MORE` | `setKeyboardCustomMore()` | 自定义键盘布局 - 更多 |
+| 键盘类型                           | 设置布局方法                                       | 说明 |
+|----------------------------------|----------------------------------------------|------|
+| `KeyboardType.CUSTOM`            | `kingKeyboard.setKeyboardCustom()`           | 自定义键盘 |
+| `KeyboardType.CUSTOM_MODE_CHANGE` | `kingKeyboard.setKeyboardCustomModeChange()` | 自定义键盘 - 模式切换 |
+| `KeyboardType.CUSTOM_MORE`       | `kingKeyboard.setKeyboardCustomMore()`       | 自定义键盘 - 更多 |
 
 #### 自定义键盘代码示例
 
