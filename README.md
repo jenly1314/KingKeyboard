@@ -12,10 +12,10 @@
 **KingKeyboard** 是一款灵活好用的自定义键盘，内置多种智能预设模式（包括字母、数字、电话、身份证、车牌号等专用键盘），同时支持完全自定义，轻松满足各种输入场景需求。
 
 ## 功能特色
-- 🎯 开箱即用：内置多种预设键盘，轻松应对各类输入场景
-- 🛠️ 深度定制：支持完全自定义，满足个性化需求
-- 🚀 极简集成：提供简洁的API，可快速接入
-- 🎨 舒适视觉：专业设计师精心调校的配色方案，兼顾美学表现与实用体验
+- 🎯 **开箱即用：** 内置多种预设键盘，轻松应对各类输入场景
+- 🛠️ **深度定制：** 支持完全自定义，满足个性化需求
+- 🚀 **极简集成：** 提供简洁的API，可快速接入
+- 🎨 **舒适视觉：** 专业设计师精心调校的配色方案，兼顾美学表现与实用体验
 
 ## Gif 展示
 ![Image](GIF.gif)
@@ -225,15 +225,16 @@ KeyboardType.CUSTOM_MORE
 ### 自定义键盘
 
 如果目前所支持的键盘满足不了你的需求，你也可以自定义键盘，`KingKeyboard`对外提供自定义键盘类型。
-自定义步骤也非常简单，只需自定义键盘的xml布局，然后将`EditText`注册到对应的自定义键盘类型即可。
 
 **`KeyboardType` 中预留的自定义键盘类型**
 
 | 键盘类型                           | 设置布局方法                                       | 说明 |
 |----------------------------------|----------------------------------------------|------|
-| `KeyboardType.CUSTOM`            | `kingKeyboard.setKeyboardCustom()`           | 自定义键盘 |
-| `KeyboardType.CUSTOM_MODE_CHANGE` | `kingKeyboard.setKeyboardCustomModeChange()` | 自定义键盘 - 模式切换 |
-| `KeyboardType.CUSTOM_MORE`       | `kingKeyboard.setKeyboardCustomMore()`       | 自定义键盘 - 更多 |
+| `CUSTOM`            | `kingKeyboard.setKeyboardCustom()`           | 自定义键盘 |
+| `CUSTOM_MODE_CHANGE` | `kingKeyboard.setKeyboardCustomModeChange()` | 自定义键盘 - 模式切换 |
+| `CUSTOM_MORE`       | `kingKeyboard.setKeyboardCustomMore()`       | 自定义键盘 - 更多 |
+
+> 自定义键盘步骤也非常简单，你只需自定义键盘的xml布局，然后将`EditText`注册到对应的自定义键盘类型即可。
 
 #### 自定义键盘代码示例
 
