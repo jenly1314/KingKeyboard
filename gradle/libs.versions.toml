@@ -5,7 +5,7 @@ targetSdk = "32"
 agp = "8.0.2"
 kotlin = "1.8.10"
 dokka = "1.8.20"
-vanniktechMavenPublish = "0.25.3"
+mavenPublish = "0.25.3"
 appcompat = "1.1.0"
 coreKtx = "1.8.0"
 constraintlayout = "2.0.4"
@@ -27,4 +27,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktechMavenPublish" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
