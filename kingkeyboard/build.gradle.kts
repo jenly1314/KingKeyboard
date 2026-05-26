@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.vanniktech.maven.publish)
+    alias(libs.plugins.maven.publish)
 }
 
 android {
